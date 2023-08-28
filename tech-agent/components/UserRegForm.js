@@ -8,14 +8,17 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
 
-  const handleLogin = () => {
-    // Simulate login logic here
-    console.log('Logging in with:', username, password);
+  const handleRegister = () => {
+    // Simulate registration logic here
+    console.log('Registering with:', username, email, location, phone, password);
+    
+    // Redirect to userHome page
+    window.location.href = '/userHome';
   };
 
   return (
     <div className="w-full max-w-md mx-auto p-8 border rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4">Log In</h2>
+      <h2 className="text-2xl font-semibold mb-4">Register</h2>
       <input
         className="w-full p-2 mb-2 border rounded-md"
         type="text"
@@ -59,12 +62,11 @@ const LoginForm = () => {
         onChange={(e) => setPassword2(e.target.value)}
       />
       <button
-        onClick={handleLogin}
+        onClick={handleRegister}
         className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none"
       >
         Register
       </button>
-      
     </div>
   );
 };
