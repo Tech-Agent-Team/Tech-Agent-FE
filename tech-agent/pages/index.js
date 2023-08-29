@@ -7,10 +7,8 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <h1>Welcome to My App</h1>
-      <Link href="/" legacyBehavior>
-        <a>Login</a>
-      </Link>
+
+
       <Footer />
     </div>
   );

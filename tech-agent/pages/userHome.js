@@ -7,16 +7,7 @@ const UserHome = () => {
     <div>
     <Header />
 
-   <div className="flex justify-center items-center min-h-screen">
-             
-
-      <div className="flex w-full max-w-screen-xl mx-auto p-8">
-     
-         
-        <UserOrderForm />
-        <ElectricianImage />
-      </div>
-    </div>
+<h1>tec home</h1>
     </div>
   );
 };
