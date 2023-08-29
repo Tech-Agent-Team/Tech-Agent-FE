@@ -18,10 +18,10 @@ const LoginPage = () => {
   if (!user) {
     return <LoginForm />;
   } else if (user.is_technician) {
-    return <UserHome />;
-  } else {
     return <TechHome />;
-
+  } else {
+    
+    return <UserHome />;
   }
 };
 

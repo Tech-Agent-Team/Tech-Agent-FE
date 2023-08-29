@@ -1,24 +1,27 @@
 import React from 'react';
-import UserOrderForm from '../components/ElectricianImage';
-import ElectricianImage from '../components/UserOrderForm';
 import Header from '../components/Header';
-const TechHome = () => {
+import useResource from '@/Hooks/useResource';
+
+const UserHome = () => {
+  const { response } = useResource();
+
   return (
     <div>
-    <Header />
-
-   <div className="flex items-center justify-center min-h-screen">
-             
-
-      <div className="flex w-full max-w-screen-xl p-8 mx-auto">
-     
-         
-        <UserOrderForm />
-        <ElectricianImage />
+      <Header />
+      <div className="order-cards">
+        {response.map(order => (
+          <div key={order.id} className="order-card">
+            <img src={order.image} alt={order.description} />
+            <h2>{order.description}</h2>
+            <p>Technician Type: {order.technician_type}</p>
+            {order.eta_arrival_time && (
+              <p>ETA Arrival Time: {order.eta_arrival_time}</p>
+            )}
+          </div>
+        ))}
       </div>
-    </div>
     </div>
   );
 };
 
-export default TechHome;
+export default UserHome;
