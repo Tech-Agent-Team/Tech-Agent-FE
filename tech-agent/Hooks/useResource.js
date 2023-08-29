@@ -34,15 +34,15 @@ export default function useResource() {
         }
 
     }
-    async function createResource(newLocation){
-        const urlpost = url+"/api/v1/cookieStand/"
+    async function createResource(order){
+        const urlpost = url+"/createorder/"
         if (!token) {
             return
         }try{
 
             const options =config()
             options.method ="POST"
-            options.body  = JSON.stringify(newLocation)
+            options.body  = JSON.stringify(order)
 
             await fetch(urlpost, options )
             mutate()
@@ -72,6 +72,14 @@ export default function useResource() {
 
 
     }
+
+    async function errorHandler(err) {
+        console.error(err)
+        if (err) {
+          console.log(err)
+          }
+          logout()
+        }
 
     return {
         response : data || [],
