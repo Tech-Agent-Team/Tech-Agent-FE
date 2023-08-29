@@ -1,74 +1,75 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import useResource from '@/hook/useResource';
+import UserOrderForm from './UserOrderForm';
+export default function TechRegForm() {
+  const { createResource2 } = useResource();
 
-const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [location, setLocation] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const handleRegisterSubmit = async (event) => {
+    event.preventDefault();
+    const newTechnician = {
+      username: event.target.username.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+      password2: event.target.password2.value,
+    };
 
-  const handleRegister = () => {
-    // Simulate registration logic here
-    console.log('Registering with:', username, email, location, phone, password);
-    
-    // Redirect to userHome page
-    window.location.href = '/userHome';
+    try {
+      await createResource2(newTechnician);
+      alert("Registration successful!");
+      <UserOrderForm/>
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-8 border rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4">Register</h2>
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Enter your username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="email"
-        placeholder="Enter your email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Enter your location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Enter your phone"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="password"
-        placeholder="Enter your password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="password"
-        placeholder="Confirm your password"
-        value={password2}
-        onChange={(e) => setPassword2(e.target.value)}
-      />
+    <form onSubmit={handleRegisterSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <label className="block text-black mb-2">
+        Username:
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter your username"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block text-black mb-2">
+        Email:
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block text-black mb-2">
+        Password:
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block text-black mb-2">
+        Confirm Password:
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm your password"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
       <button
-        onClick={handleRegister}
-        className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none"
+        type="submit"
+        className="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
       >
         Register
       </button>
-    </div>
+    </form>
   );
-};
-
-export default LoginForm;
+}

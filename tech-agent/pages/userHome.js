@@ -1,6 +1,7 @@
 import React from 'react';
 import UserOrderForm from '../components/ElectricianImage';
 import ElectricianImage from '../components/UserOrderForm';
+import UserRegPage from './UserRegPage';
 import Header from '../components/Header';
 const UserHome = () => {
   return (

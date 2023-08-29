@@ -1,10 +1,6 @@
 module.exports = {
-  async rewrites() {
-    return [
-      {
-        source: '/LoginPage',
-        destination: '/LoginPage',
-      },
-    ];
+  images: {
+    domains: ['img.freepik.com'], // Add the hostname here
   },
+
 };
