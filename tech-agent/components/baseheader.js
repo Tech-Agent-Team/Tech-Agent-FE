@@ -15,9 +15,11 @@ const Header = () => {
           </li>
 
           <li className="ml-auto">
-            <Link href="/LoginPage">
-              <button className="text-white cursor-pointer" onClick={""}>About</button>
+          <Link href="/AboutPage">
+            
+              <button className="text-white cursor-pointer" onClick={() => console.log("About clicked")}>About</button>
             </Link>
+
           </li>
           <li className="ml-auto">
             <Link href="/LoginPage">
