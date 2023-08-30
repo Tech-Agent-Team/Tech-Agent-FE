@@ -18,6 +18,23 @@ export default function useResource() {
         }
     }
 
+
+    async function deleteResource(id) {
+        const urldelete = url + "/api/customer/deletorders/";
+        const deleteUrl = urldelete + id;
+        if (!token) {
+          return;
+        }
+        try {
+          const options = config();
+          options.method = "DELETE";
+          await fetch(deleteUrl, options);
+          mutate();
+        } catch (error) {
+          console.error("Error deleting order:", error);
+          throw error; // Propagate the error for further handling
+        }
+      }
     
 
     async function fetchResource() {
@@ -44,6 +61,7 @@ export default function useResource() {
 
     return {
         response : data || [],
+        deleteResource
 
 
     }
