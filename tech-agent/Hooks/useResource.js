@@ -130,25 +130,7 @@ export default function useResource() {
         }
       }
 
-    async function deleteResource(id){
-        const urldelete =  url+"/api/v1/cookieStand/";
-        const deleteUrl =urldelete+id
-        if (!token) {
-            return
-        }try{
-
-            const options =config()
-            options.method ="DELETE"
-
-            await fetch(deleteUrl, options )
-            mutate()
-
-        }catch (error) {
-            errorHandler(error)
-        }
-
-
-    }
+ 
 
     async function errorHandler(err) {
         console.error(err)
