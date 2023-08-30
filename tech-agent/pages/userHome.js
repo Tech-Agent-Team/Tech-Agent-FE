@@ -1,8 +1,8 @@
 import React from 'react';
 import UserOrderForm from '../components/ElectricianImage';
 import ElectricianImage from '../components/UserOrderForm';
-import Header from '../components/Header';
-const TechHome = () => {
+import Header from '@/components/HeaderUser';
+const UserHome = () => {
   return (
     <div>
     <Header />
@@ -21,4 +21,4 @@ const TechHome = () => {
   );
 };
 
-export default TechHome;
+export default UserHome;

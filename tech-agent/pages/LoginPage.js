@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../components/HeaderTec';
 import LoginForm from '../components/LoginForm';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth';

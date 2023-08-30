@@ -1,6 +1,6 @@
 // pages/TechRegPage.js
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../components/HeaderTec';
 import TechRegForm from '../components/TechRegForm';
 
 const TechRegPage = () => {

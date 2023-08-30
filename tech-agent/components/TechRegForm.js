@@ -1,99 +1,108 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import useResource from '@/Hooks/useResource';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+export default function TechRegForm() {
+  const { createResource1 } = useResource();
+  const router = useRouter();
+ 
+  const handleRegisterSubmit = async (event) => {
+    event.preventDefault();
+    const newTechnician = {
+      username: event.target.username.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+      password2: event.target.password2.value,
+      profession: event.target.profession.value,
+      image: event.target.image.value,
+      description: event.target.description.value,
+    };
 
-const TechRegForm = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [location, setLocation] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [profession, setProfession] = useState('');
-  const [expertise, setExpertise] = useState('');
-  const [tailoring, setTailoring] = useState(false);
-
-  const handleRegister = () => {
-    // Simulate registration logic here
-    console.log('Registering technician:', {
-      username,
-      email,
-      location,
-      phone,
-      password,
-      password2,
-      profession,
-      expertise,
-      tailoring,
-    });
+    try {
+      await createResource1(newTechnician);
+      router.push('/LoginPage');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-8 border rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4">Register as Technician</h2>
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="tel"
-        placeholder="Phone"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="password"
-        placeholder="Confirm Password"
-        value={password2}
-        onChange={(e) => setPassword2(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Profession"
-        value={profession}
-        onChange={(e) => setProfession(e.target.value)}
-      />
-      <input
-        className="w-full p-2 mb-2 border rounded-md"
-        type="text"
-        placeholder="Expertise"
-        value={expertise}
-        onChange={(e) => setExpertise(e.target.value)}
-      />
-     
+    <form onSubmit={handleRegisterSubmit} className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
+      <label className="block mb-2 text-black">
+        Username:
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter your username"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block mb-2 text-black">
+        Email:
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block mb-2 text-black">
+        Password:
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block mb-2 text-black">
+        Confirm Password:
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm your password"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block mb-2 text-black">
+        Profession:
+        <input
+          type="text"
+          name="profession"
+          placeholder="Enter your profession"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block mb-2 text-black">
+        Image URL:
+        <input
+          type="text"
+          name="image"
+          placeholder="Enter the image URL"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
+      <label className="block mb-2 text-black">
+        Description:
+        <textarea
+          name="description"
+          placeholder="Enter a description"
+          required
+          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </label>
       <button
-        onClick={handleRegister}
-        className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none"
+        type="submit"
+        className="w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
       >
         Register
       </button>
-    </div>
+    </form>
   );
-};
-
-export default TechRegForm;
+}

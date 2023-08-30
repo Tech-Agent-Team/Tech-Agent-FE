@@ -13,6 +13,17 @@ const Header = () => {
               <span className="text-lg font-semibold text-white cursor-pointer">Home</span>
             </Link>
           </li>
+
+          <li className="ml-auto">
+            <Link href="/AcceptedOrder">
+              <button className="text-white cursor-pointer" >Accepted Orders</button>
+            </Link>
+          </li>
+          <li className="ml-auto">
+            <Link href="/LoginPage">
+              <button className="text-white cursor-pointer" onClick={""}>About</button>
+            </Link>
+          </li>
           <li className="ml-auto">
             <Link href="/LoginPage">
               <button className="text-white cursor-pointer">Login</button>

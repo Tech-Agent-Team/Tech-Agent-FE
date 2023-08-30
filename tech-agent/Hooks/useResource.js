@@ -17,6 +17,17 @@ export default function useResource() {
 
         }
     }
+    function config1() {
+        return {
+            headers: {
+                "Content-Type": "application/json",
+                
+            },
+
+
+        }
+    }
+    
 
     async function fetchResource() {
         const urlget = url+"/api/technician/hometechnician/"
@@ -34,25 +45,91 @@ export default function useResource() {
         }
 
     }
-    async function createResource(order){
-        const urlpost = url+"/createorder/"
-        if (!token) {
-            return
-        }try{
 
-            const options =config()
-            options.method ="POST"
-            options.body  = JSON.stringify(order)
+    
+    async function fetchResourcecustomer() {
+      const urlget = url+"/api/customer/myorders/"
+      if (!token) {
+          return
+      }
+      try {
+          const response = await fetch(urlget, config())
+          const jsonResponse  = await response.json()
+          return jsonResponse
 
-            await fetch(urlpost, options )
-            mutate()
 
-        }catch (error) {
-            errorHandler(error)
+      } catch (error) {
+          console.log("hi")
+      }
+
+  }
+
+
+
+    async function createResource1(newTechnician) {
+        const urlpost = 'http://localhost:8000/api/technician/signup/';
+        try {
+          const options = config1();
+          options.method = 'POST';
+          options.body = JSON.stringify(newTechnician);
+          const response = await fetch(urlpost, options);
+          console.log(response.status)
+      
+          if (!response.ok) {
+            const responseBody = await response.text();
+            console.error('Failed to register technician. Server response:', responseBody);
+            throw new Error('Failed to register technician');
+          }
+      
+
+        } catch (error) {
+          console.error('Error creating resource:', error);
+          throw error;
         }
+      }
 
+      async function createResource2(newTechnician) {
+        const urlpost = 'http://localhost:8000/api/customer/signup/';
+        try {
+          const options = config1();
+          options.method = 'POST';
+          options.body = JSON.stringify(newTechnician);
+          const response = await fetch(urlpost, options);
+      
+          if (!response.ok) {
+            const responseBody = await response.text();
+            console.error('Failed to register technician. Server response:', responseBody);
+            throw new Error('Failed to register technician');
+          }
+      
+          // You can handle success here if needed
+        } catch (error) {
+          console.error('Error creating resource:', error);
+          throw error;
+        }
+      }
 
-    }
+      async function createResource3(arrivalTime,order_id) {
+        const urlpost = `http://127.0.0.1:8000/acceptorder/${order_id}/`;
+        try {
+          const options = config();
+          options.method = 'POST';
+          options.body = JSON.stringify(arrivalTime);
+          const response = await fetch(urlpost, options);
+      
+          if (!response.ok) {
+            const responseBody = await response.text();
+            console.error('Failed to register technician. Server response:', responseBody);
+            throw new Error('Failed to register technician');
+          }
+      
+          // You can handle success here if needed
+        } catch (error) {
+          console.error('Error creating resource:', error);
+          throw error;
+        }
+      }
+
     async function deleteResource(id){
         const urldelete =  url+"/api/v1/cookieStand/";
         const deleteUrl =urldelete+id
@@ -83,7 +160,10 @@ export default function useResource() {
 
     return {
         response : data || [],
-        createResource,
         deleteResource,
+        createResource1,
+        createResource2,
+        createResource3
+
     }
 }
