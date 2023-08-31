@@ -5,8 +5,8 @@ import { useAuth } from '@/context/auth';
 const Header = () => {
   const { logout } = useAuth(); 
   return (
-    <header className="bg-gray-900">
-      <nav className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
+    <header className="bg-gray-900 sticky top-0 z-50">
+      <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <ul className="flex items-center h-16">
           <li>
             <Link href="/">
@@ -15,13 +15,18 @@ const Header = () => {
           </li>
 
           <li className="ml-auto">
-            <Link href="/LoginPage">
-              <button className="text-white cursor-pointer" onClick={""}>About</button>
+            <Link href="/AcceptedOrder">
+              <button className="text-white cursor-pointer mr-2">Accepted Orders</button>
             </Link>
           </li>
           <li className="ml-auto">
             <Link href="/LoginPage">
-              <button className="text-white cursor-pointer">Login</button>
+              <button className="text-white cursor-pointer mr-2">About</button>
+            </Link>
+          </li>
+          <li className="ml-auto">
+            <Link href="/LoginPage">
+              <button className="text-white cursor-pointer mr-2">Login</button>
             </Link>
           </li>
           <li className="ml-auto">
