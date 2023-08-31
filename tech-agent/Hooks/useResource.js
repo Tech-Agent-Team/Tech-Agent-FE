@@ -31,7 +31,24 @@ export default function useResource(urll) {
       }
   }
 
-    
+  async function updateResource(id, updatedData) {
+    const urlUpdate = urlenv + "/updateorder/";
+    const updateUrl = `${urlUpdate}${id}/`;
+    if (!token) {
+      return;
+    }
+    try {
+      const options = config();
+      options.method = "PUT";
+      // const response = await axios.put(updateUrl, updatedData, config);
+      options.body= JSON.stringify(updatedData)
+      await fetch(updateUrl,options); // Optionally return the updated data or response
+      mutate();
+    } catch (error) {
+      console.error("Error updating order:", error);
+      throw error;
+    }
+  }   
 
     function config1() {
       return {
@@ -181,7 +198,8 @@ export default function useResource(urll) {
         createResource1,
         createResource2,
         createResource3,
-        createResource4
+        createResource4,
+        updateResource
 
     }
 }
