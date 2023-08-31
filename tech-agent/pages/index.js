@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/baseheader';
 import Footer from '../components/Footer';
-
+// import UpdateModal from '@/components/updateModal';
 
 
 
@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-
+      {/* <UpdateModal /> */}
       <div className="container p-10 mx-auto " >
         <h1 className="mb-4 text-2xl font-semibold ">Welcome to Our Website</h1>
         

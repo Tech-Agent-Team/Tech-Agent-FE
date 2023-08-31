@@ -35,6 +35,20 @@ export default function useResource() {
           throw error; // Propagate the error for further handling
         }
       }
+
+      async function updateResource(id, updatedData) {
+        const urlUpdate = url + "/updateorder/";
+        const updateUrl = urlUpdate + id;
+        try {
+          const response = await axios.post(updateUrl, updatedData, config);
+          return response.data; // Optionally return the updated data or response
+        } catch (error) {
+          console.error("Error updating order:", error);
+          throw error;
+        }
+      }
+
+      
     
 
     async function fetchResource() {
@@ -61,7 +75,8 @@ export default function useResource() {
 
     return {
         response : data || [],
-        deleteResource
+        deleteResource,
+        updateResource
 
 
     }
