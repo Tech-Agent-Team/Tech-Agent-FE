@@ -1,9 +1,13 @@
 import Header from '@/components/HeaderTec';
-import useResource from '@/Hooks/useResource6';
-
+import useResource from '@/Hooks/useResource';
+import { useAuth } from '@/context/auth';
 const techprofile = () => {
-    const { response } = useResource();
-console.log(11111666666661111,response)
+    const { user} = useAuth()
+  const urlenv = process.env.NEXT_PUBLIC_URL
+
+    const url = urlenv+`/api/customer/profile/${user.username}/`;
+    const { response: data1, error: error1 } = useResource(url);
+
 
 
     return (
@@ -13,8 +17,8 @@ console.log(11111666666661111,response)
         <div>
 
 
-            {response && (
-                <h1>{response.profession}</h1>
+            {data1 && (
+                <h1>{data1.profession}</h1>
             )}
         </div>
 

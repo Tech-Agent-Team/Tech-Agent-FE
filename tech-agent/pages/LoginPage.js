@@ -6,11 +6,7 @@ import { useAuth } from '@/context/auth';
 import TechHome from './TechHome';
 import UserHome from './userHome';
 
-// const CustomLink = ({ href, children }) => (
-//   <Link href={href}>
-//     <div>{children}</div>
-//   </Link>
-// );
+
 
 const LoginPage = () => {
   const { user } = useAuth();

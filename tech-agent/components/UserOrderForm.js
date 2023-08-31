@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useAuth } from "@/context/auth"
 const UserOrderForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const urlenv = process.env.NEXT_PUBLIC_URL
   const auth = useAuth();
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -24,7 +25,7 @@ const UserOrderForm = () => {
           Authorization: `Bearer ${token.access}`,
       },
   };
-    const url='http://127.0.0.1:8000/createorder/'
+    const url=urlenv+'/createorder/'
     const data=await axios.post(url ,formData,config)
     alert("created successfully !")
     event.target.reset();

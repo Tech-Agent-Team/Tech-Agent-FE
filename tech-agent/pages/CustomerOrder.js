@@ -1,8 +1,11 @@
 import React from 'react';
 import Header from '../components/HeaderUser';
-import useResource from '@/Hooks/useResource2';
+import useResource from '@/Hooks/useResource';
 const customerOrder = () => {
-  const { response, deleteResource } = useResource();
+  const urlenv = process.env.NEXT_PUBLIC_URL
+  const url = urlenv+'/api/customer/myorders/';
+  const { response: data1, error: error1, deleteResource } = useResource(url);
+  
   const handleDeleteOrder = (orderId) => {
     deleteResource(orderId);
   };
@@ -12,7 +15,7 @@ const customerOrder = () => {
       <div className="bg-red">
         <div className="pb-2 mb-8 border-b">Accepted Orders</div> {/* Category title */}
         <div className="flex flex-wrap gap-5">
-          {response.map(order => (
+          {data1.map(order => (
             order.state_is_ongoing && (
               <div key={order.id} className="w-1/3 p-4 border">
                 {/* Card content */}
@@ -36,7 +39,7 @@ const customerOrder = () => {
       <div className="mt-8 bg-red">
         <div className="pb-2 mb-8 border-b">Panding order</div> {/* Category title */}
         <div className="flex flex-wrap gap-5">
-          {response.map(order => (
+          {data1.map(order => (
             !order.state_is_ongoing && (
               <div key={order.id} className="w-1/3 p-4 border">
                 {/* Card content */}
