@@ -12,7 +12,7 @@ const acceptedorder = () => {
   const handleSubmit = async (event, id) => {
     event.preventDefault();
     const message = {
-      comments: event.target.message.value,
+      body: event.target.message.value,
 
     };
 

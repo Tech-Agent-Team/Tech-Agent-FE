@@ -27,6 +27,7 @@ export default function TechRegForm() {
   };
 
   return (
+
     <form onSubmit={handleRegisterSubmit} className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
       <label className="block mb-2 text-black">
         Username:

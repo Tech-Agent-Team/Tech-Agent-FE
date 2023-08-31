@@ -5,7 +5,7 @@ export default function useResource(urll) {
   const urlenv = process.env.NEXT_PUBLIC_URL
   
   const { token } = useAuth();
-  const { data, error, mutate } = useSWR([urll, token.access], fetchResource);
+  const { data, error, mutate } = useSWR([urll, token], fetchResource);
 
   function config() {
       return {
@@ -146,26 +146,26 @@ export default function useResource(urll) {
         }
       }
 
-      async function createResource4(message,order_id) {
-        const urlpost = urlenv+`/api/orders/comment/${order_id}/`;
-        try {
-          const options = config();
-          options.method = 'POST';
-          options.body = JSON.stringify(message);
-          const response = await fetch(urlpost, options);
+      // async function createResource4(message,order_id) {
+      //   const urlpost = urlenv+`/api/orders/comment/${order_id}/`;
+      //   try {
+      //     const options = config();
+      //     options.method = 'POST';
+      //     options.body = JSON.stringify(message);
+      //     const response = await fetch(urlpost, options);
       
-          if (!response.ok) {
-            const responseBody = await response.text();
-            console.error('Failed to register technician. Server response:', responseBody);
-            throw new Error('Failed to register technician');
-          }
+      //     if (!response.ok) {
+      //       const responseBody = await response.text();
+      //       console.error('Failed to register technician. Server response:', responseBody);
+      //       throw new Error('Failed to register technician');
+      //     }
       
-          // You can handle success here if needed
-        } catch (error) {
-          console.error('Error creating resource:', error);
-          throw error;
-        }
-      }
+      //     // You can handle success here if needed
+      //   } catch (error) {
+      //     console.error('Error creating resource:', error);
+      //     throw error;
+      //   }
+      // }
 
     async function errorHandler(err) {
         console.error(err)
@@ -185,6 +185,5 @@ export default function useResource(urll) {
 
     }
 }
-
 
 
