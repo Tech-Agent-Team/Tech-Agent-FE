@@ -23,7 +23,12 @@ const Header = () => {
 
           <li className="ml-auto">
             <Link href="/LoginPage">
-              <button className="text-white cursor-pointer" onClick={""}>About</button>
+              <button className="text-white cursor-pointer" >About</button>
+            </Link>
+          </li>
+          <li className="ml-auto">
+            <Link href="/userprofile">
+              <button className="text-white cursor-pointer" >Profile</button>
             </Link>
           </li>
           <li className="ml-auto">

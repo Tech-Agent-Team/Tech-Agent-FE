@@ -47,22 +47,7 @@ export default function useResource() {
     }
 
     
-    async function fetchResourcecustomer() {
-      const urlget = url+"/api/customer/myorders/"
-      if (!token) {
-          return
-      }
-      try {
-          const response = await fetch(urlget, config())
-          const jsonResponse  = await response.json()
-          return jsonResponse
 
-
-      } catch (error) {
-          console.log("hi")
-      }
-
-  }
 
 
 

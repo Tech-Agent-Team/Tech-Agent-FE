@@ -26,6 +26,8 @@ const UserOrderForm = () => {
   };
     const url='http://127.0.0.1:8000/createorder/'
     const data=await axios.post(url ,formData,config)
+    alert("created successfully !")
+    event.target.reset();
   };
 
   return (
