@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/HeaderUser';
+import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 import { useRouter } from 'next/router';

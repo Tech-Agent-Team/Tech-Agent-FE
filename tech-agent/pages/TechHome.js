@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Header from '../components/HeaderTec';
+import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useRouter } from 'next/router'; // Import the useRouter hook
 import { useAuth } from '@/context/auth';

@@ -1,4 +1,4 @@
-import Header from '@/components/HeaderTec';
+import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 import React, { useEffect } from 'react';

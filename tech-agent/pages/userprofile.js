@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useRouter } from 'next/router'; // Import the useRouter hook
 
-import Header from "@/components/HeaderUser";
+import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/HeaderTec';
+import Header from '../components/Header';
 import { useAuth } from '@/context/auth';
 
 import useResource from '@/Hooks/useResource';
