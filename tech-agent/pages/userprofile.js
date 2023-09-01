@@ -10,8 +10,7 @@ const UserProfile = () => {
   const { user } = useAuth();
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const router = useRouter(); // Initialize the router object
-
-  const url = urlenv + `/api/customer/profile/${user.username}/`;
+  const url = user ? urlenv + `/api/customer/profile/${user.username}/`: null;
   const { response: data1, error: error1, isLoading } = useResource(url);
 
   useEffect(() => {
