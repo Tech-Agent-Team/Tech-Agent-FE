@@ -6,14 +6,17 @@ import { useRouter } from 'next/router';
 const customerOrder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
   const url = urlenv + '/api/customer/myorders/';
-  const { response: data1, error: error1, deleteResource, updateResource } = useResource(url);
+  const { response: data1, error: error1, deleteResource, updateResource, updaterating, updaterating2 } = useResource(url);
   const router = useRouter(); // Initialize the router object
   const { user } = useAuth();
   const handleDeleteOrder = (orderId) => {
     deleteResource(orderId);
   };
   const [showModal, setShowModal] = useState(false);
+  const [showModalrate, setShowModalrate] = useState(false);
+
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedOrderIdrating, setSelectedOrderIdrating] = useState(null);
   const [formData, setFormData] = useState({});
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -53,7 +56,55 @@ const customerOrder = () => {
       router.push('../');
     }
   }, [user, router]);
-  // ... JSX and rendering for your component, including form inputs and the modal
+
+
+
+
+
+  const handleRateOrder = (orderId) => {
+    updaterating(orderId); // Store the selected order ID
+    setSelectedOrderIdrating(orderId)
+    setShowModalrate(true); // Open the modal
+  };
+
+  const [feedback, setFeedback] = useState('');
+  const [rating, setRating] = useState('');
+
+  const handleInputChangerating = (e) => {
+    const { name, value } = e.target;
+
+    // Update the state based on the input field's name
+    if (name === 'feedback') {
+      setFeedback(value);
+    } else if (name === 'rating') {
+      setRating(value);
+    }
+  };
+
+  const handleUpdateClickrating = () => {
+    console.log("Feedback:", feedback);
+    console.log("id:", selectedOrderIdrating);
+
+    console.log("Rating:", rating);
+
+    // Check if both feedback and rating are non-empty before proceeding
+    if (feedback && rating) {
+      // Call updaterating2 with feedback and rating values and orderId
+      updaterating2(selectedOrderIdrating, feedback, rating);
+
+      // Close the modal if needed
+      setShowModalrate(false);
+      alert("hi");
+    } else {
+      alert("no");
+    }
+  };
+
+
+
+
+
+
   if (user && !user.is_technician) {
     return (
       <div className="relative">
@@ -129,6 +180,51 @@ const customerOrder = () => {
             </div>
           </div>
         ) : null}
+
+
+
+        {showModalrate ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+            <div className="p-8 bg-white rounded-lg shadow-lg">
+              <label className="block mb-2">
+                Feedback:
+                <input
+                  type="text"
+                  name="feedback"
+                  onChange={handleInputChangerating}
+                  className="block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </label>
+              <label className="block mb-2">
+                Rating:
+                <input
+                  type="number"
+                  name="rating"
+                  onChange={handleInputChangerating}
+                  className="block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </label>
+
+              <div className="flex justify-between mt-4">
+                <button
+                  type="button"
+                  className="px-4 py-2 text-white bg-blue-500 rounded-md"
+                  onClick={() => handleUpdateClickrating()}
+                >
+                  send
+                </button>
+                <button
+                  className="px-4 py-2 text-white bg-red-500 rounded-md"
+                  onClick={() => setShowModalrate(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+
         <div className="bg-red">
           <div className="pb-2 mb-8 border-b">Accepted Orders</div> {/* Category title */}
           <div className="flex flex-wrap gap-5">
@@ -138,6 +234,7 @@ const customerOrder = () => {
                   {/* Card content */}
                   <img src={order.image} alt={order.description} className="w-full mb-2" />
                   <h3 className="text-lg font-semibold">{order.description}</h3>
+                  <p>Technician Name: {order.technician_name.username}</p>
                   <p>Technician Type: {order.technician_type}</p>
                   <p>Address: {order.address}</p>
                   <p>Creation Timestamp: {order.created_at}</p>
@@ -153,12 +250,14 @@ const customerOrder = () => {
             ))}
           </div>
         </div>
+
         <div className="mt-8 bg-red">
           <div className="pb-2 mb-8 border-b">Panding order</div> {/* Category title */}
           <div className="flex flex-wrap gap-5">
             {data1.map(order => (
               !order.state_is_ongoing && (
                 <div key={order.id} className="w-1/3 p-4 border">
+
                   {/* Card content */}
                   <img src={order.image} alt={order.description} className="w-full mb-2" />
                   <h3 className="text-lg font-semibold">{order.description}</h3>
@@ -187,7 +286,11 @@ const customerOrder = () => {
                     </div>
                   </div>
                 </div>
+
+
               )
+
+
             ))}
           </div>
         </div>

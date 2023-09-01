@@ -50,6 +50,44 @@ export default function useResource(urll) {
     }
   }   
 
+  async function updaterating(id) {
+    const urlUpdate = urlenv + `/api/customer/ordersdone/${id}/`;
+    if (!token) {
+      return;
+    }
+    try {
+      const options = config();
+      options.method = "PUT";
+      await fetch(urlUpdate,options); 
+      mutate();
+    } catch (error) {
+      console.error("Error updating order:", error);
+      throw error;
+    }
+  } 
+  
+  
+  async function updaterating2(id,feedback, rating) {
+    const urlUpdate = urlenv + `/api/customer/feedback/${id}/`;
+
+    if (!token) {
+      return;
+    }
+    try {
+      const options = config();
+      options.method = "PUT";
+      options.body = JSON.stringify({
+        feedback: feedback,
+        rating: rating,
+      });
+      await fetch(urlUpdate,options); 
+      mutate();
+    } catch (error) {
+      console.error("Error updating order:", error);
+      throw error;
+    }
+  } 
+
     function config1() {
       return {
           headers: {
@@ -199,7 +237,9 @@ export default function useResource(urll) {
         createResource2,
         createResource3,
         createResource4,
-        updateResource
+        updateResource,
+        updaterating,
+        updaterating2
 
     }
 }

@@ -34,42 +34,46 @@ const acceptedorder = () => {
   }, [user, router]);
   if (user && user.is_technician) {
     return (
-      <div>
-        <Header />
-        <div className="flex flex-wrap gap-5">
-          {data1.map(order => (
-            <div key={order.id} className="w-1/3 p-4 border">
-              <img src={order.image} alt={order.description} className="w-full mb-2" />
-              <h3 className="text-lg font-semibold">{order.description}</h3>
-              <div>
-                {order.comments && order.comments.map(comment => (
-                  <div key={comment.id}>
-                    <h3 className="text-lg font-semibold">{`${comment.sender}: ${comment.body}`}</h3>
-                    {/* Render other comment properties as needed */}
-                  </div>
-                ))}
+<div>
+  <Header />
+  <div className="flex flex-wrap gap-5">
+    {data1.map(order => (
+      <div key={order.id} className="w-1/3 p-4 border">
+        <img src={order.image} alt={order.description} className="w-full mb-2" />
+        <h3 className="text-lg font-semibold">{order.description}</h3>
+        <p>Customer: {order.customer_name.username}</p>
 
-              </div>
-              <p>Technician Type: {order.technician_type}</p>
-              {order.eta_arrival_time && (
-                <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
-              )}
-
-              <form onSubmit={event => handleSubmit(event, order.id)}>
-                <input
-                  type="text"
-                  placeholder="Add your message"
-                  className="w-full p-2 mt-2 border rounded-md"
-                  name="message"
-                />
-                <button className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-md" type="submit">
-                  Send
-                </button>
-              </form>
+        {/* Render comments */}
+        <div>
+          {order.comments && order.comments.map(comment => (
+            <div key={comment.id}>
+              <h3 className="text-lg font-semibold">{`${comment.sender}: ${comment.body}`}</h3>
+              {/* Render other comment properties as needed */}
             </div>
           ))}
         </div>
+
+        <p>Technician Type: {order.technician_type}</p>
+        {order.eta_arrival_time && (
+          <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
+        )}
+
+        <form onSubmit={event => handleSubmit(event, order.id)}>
+          <input
+            type="text"
+            placeholder="Add your message"
+            className="w-full p-2 mt-2 border rounded-md"
+            name="message"
+          />
+          <button className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-md" type="submit">
+            Send
+          </button>
+        </form>
       </div>
+    ))}
+  </div>
+</div>
+
     );
   };
 }

@@ -9,6 +9,7 @@ const TechHome = () => {
   const router = useRouter();  
   const url = urlenv+'/api/technician/hometechnician/';
   const { response: data1, error: error1, createResource3 } = useResource(url);
+  console.log(data1)
 
   const handleSubmit = async (event, id) => {
     event.preventDefault();
