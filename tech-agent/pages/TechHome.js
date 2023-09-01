@@ -49,6 +49,7 @@ const TechHome = () => {
                 placeholder="Arrival Time"
                 className="w-full p-2 mt-2 border rounded-md"
                 name="eta_arrival_time"
+                required
               />
               <button className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-md" type="submit">
                 Accept
