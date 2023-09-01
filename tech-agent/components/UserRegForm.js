@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import useResource from '@/Hooks/useResource';
-import UserOrderForm from './UserOrderForm';
 import { useRouter } from 'next/router';
 
 export default function TechRegForm() {
@@ -9,7 +7,7 @@ export default function TechRegForm() {
 
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
-    const newTechnician = {
+    const newCustomer = {
       username: event.target.username.value,
       email: event.target.email.value,
       password: event.target.password.value,
@@ -17,7 +15,7 @@ export default function TechRegForm() {
     };
 
     try {
-      await createResource2(newTechnician);
+      await createResource2(newCustomer);
       router.push('/LoginPage');
     } catch (error) {
       console.error('Error submitting form:', error);

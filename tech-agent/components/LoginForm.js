@@ -5,11 +5,17 @@ import { useAuth } from '@/context/auth';
 const LoginForm = () => {
   const { login } = useAuth();
 
-  const handleLogin = (event) => {
+  const handleLogin =async (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
-    login(username, password);
+    try {
+      await login(username, password);
+      router.push('/LoginPage');
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -20,7 +26,7 @@ const LoginForm = () => {
           <div className="mb-4">
             <label className="block mb-1 font-semibold text-gray-600">Username</label>
             <input
-              className="w-full p-2 border rounded-md text-black"
+              className="w-full p-2 text-black border rounded-md"
               type="text"
               placeholder="Enter your username"
               name="username"
@@ -29,7 +35,7 @@ const LoginForm = () => {
           <div className="mb-4">
             <label className="block mb-1 font-semibold text-gray-600">Password</label>
             <input
-              className="w-full p-2 border rounded-md text-black"
+              className="w-full p-2 text-black border rounded-md"
               type="password"
               placeholder="Enter your password"
               name="password"

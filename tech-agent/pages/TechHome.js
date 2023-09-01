@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/HeaderTec';
 import useResource from '@/Hooks/useResource';
-
+import { useRouter } from 'next/router'; // Import the useRouter hook
+import { useAuth } from '@/context/auth';
 const TechHome = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
-  
+  const { user } = useAuth();
+  const router = useRouter();  
   const url = urlenv+'/api/technician/hometechnician/';
   const { response: data1, error: error1, createResource3 } = useResource(url);
 
@@ -16,8 +18,21 @@ const TechHome = () => {
     createResource3(arrivalTime, id);
     alert('hi');
   };
-
+  useEffect(() => {
+    // Check if the user is authenticated and their role
+    if (user) {
+      if (!user.is_technician) {
+        router.push('./TechHome'); // Redirect to the technician's home
+      }
+    }
+    else {
+      router.push('../');
+    }
+  }, [user, router]);
+  if (user) {
+    if (user.is_technician) {
   return (
+
     <div>
       <Header />
       <div className="gap-5 flex-c">
@@ -44,6 +59,6 @@ const TechHome = () => {
       </div>
     </div>
   );
-};
+};}}
 
 export default TechHome;

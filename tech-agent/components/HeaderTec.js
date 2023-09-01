@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/auth';
 
 const Header = () => {
+  
   const { logout } = useAuth(); 
   return (
     <header className="bg-gray-900">
@@ -35,7 +36,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="ml-auto">
-            <Link href="/LoginPage">
+            <Link href="/">
               <button className="text-white cursor-pointer" onClick={logout}>Logout</button>
             </Link>
           </li>

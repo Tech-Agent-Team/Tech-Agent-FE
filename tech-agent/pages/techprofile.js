@@ -1,13 +1,28 @@
 import Header from '@/components/HeaderTec';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router'; // Import the useRouter hook
 
 const TechProfile = () => {
     const { user } = useAuth();
     const urlenv = process.env.NEXT_PUBLIC_URL;
     const url = `${urlenv}/api/technician/profile/${user.username}/`;
     const { response: data1, error: error1 } = useResource(url);
-  
+    const router = useRouter(); // Initialize the router object
+    useEffect(() => {
+      // Check if the user is authenticated and their role
+      if (user) {
+        if (!user.is_technician) {
+          router.push('./userprofile'); // Redirect to the technician's home
+        } 
+      }
+      else {
+        router.push('../'); 
+      }
+    }, [user, router]);
+
+    if (user && user.is_technician) {    
     return (
       <div className="min-h-screen bg-gray-100">
         <Header />
@@ -29,6 +44,6 @@ const TechProfile = () => {
         </div>
       </div>
     );
-  };
+  };};
   
   export default TechProfile;

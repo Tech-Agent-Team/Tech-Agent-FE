@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import useResource from '@/Hooks/useResource';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 export default function TechRegForm() {
   const { createResource1 } = useResource();

@@ -25,7 +25,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="ml-auto">
-            <Link href="/LoginPage">
+            <Link href="/">
               <button className="text-white cursor-pointer" onClick={logout}>Logout</button>
             </Link>
           </li>
