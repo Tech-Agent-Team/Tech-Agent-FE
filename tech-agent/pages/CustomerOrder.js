@@ -1,25 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import useResource from '@/Hooks/useResource';
-import { useAuth } from '@/context/auth';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
+import Header from "../components/Header";
+import useResource from "@/Hooks/useResource";
+import { useAuth } from "@/context/auth";
+import { useRouter } from "next/router";
+import Link from 'next/link';
+
 const customerOrder = () => {
-  const urlenv = process.env.NEXT_PUBLIC_URL
-  const url = urlenv + '/api/customer/myorders/';
-  const { response: data1, error: error1, deleteResource, updateResource } = useResource(url);
+  const urlenv = process.env.NEXT_PUBLIC_URL;
+  const url = urlenv + "/api/customer/myorders/";
+  const {
+    response: data1,
+    error: error1,
+    deleteResource,
+    updateResource,
+    updaterating,
+    updaterating2,
+  } = useResource(url);
   const router = useRouter(); // Initialize the router object
   const { user } = useAuth();
   const handleDeleteOrder = (orderId) => {
     deleteResource(orderId);
   };
   const [showModal, setShowModal] = useState(false);
+  const [showModalrate, setShowModalrate] = useState(false);
+
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedOrderIdrating, setSelectedOrderIdrating] = useState(null);
   const [formData, setFormData] = useState({});
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleUpdateClick = async () => { // No need to pass selectedOrderId as a parameter here
+  const handleUpdateClick = async () => {
+    // No need to pass selectedOrderId as a parameter here
     console.log(2222222, selectedOrderId);
     try {
       // Prepare the updated data from the form
@@ -46,14 +59,52 @@ const customerOrder = () => {
     // Check if the user is authenticated and their role
     if (user) {
       if (user.is_technician) {
-        router.push('./AcceptedOrder'); // Redirect to the technician's home
+        router.push("./AcceptedOrder"); // Redirect to the technician's home
       }
-    }
-    else {
-      router.push('../');
+    } else {
+      router.push("../");
     }
   }, [user, router]);
-  // ... JSX and rendering for your component, including form inputs and the modal
+
+  const handleRateOrder = (orderId) => {
+    updaterating(orderId); // Store the selected order ID
+    setSelectedOrderIdrating(orderId);
+    setShowModalrate(true); // Open the modal
+  };
+
+  const [feedback, setFeedback] = useState("");
+  const [rating, setRating] = useState("");
+
+  const handleInputChangerating = (e) => {
+    const { name, value } = e.target;
+
+    // Update the state based on the input field's name
+    if (name === "feedback") {
+      setFeedback(value);
+    } else if (name === "rating") {
+      setRating(value);
+    }
+  };
+
+  const handleUpdateClickrating = () => {
+    console.log("Feedback:", feedback);
+    console.log("id:", selectedOrderIdrating);
+
+    console.log("Rating:", rating);
+
+    // Check if both feedback and rating are non-empty before proceeding
+    if (feedback && rating) {
+      // Call updaterating2 with feedback and rating values and orderId
+      updaterating2(selectedOrderIdrating, feedback, rating);
+
+      // Close the modal if needed
+      setShowModalrate(false);
+      alert("hi");
+    } else {
+      alert("no");
+    }
+  };
+
   if (user && !user.is_technician) {
     return (
       <div className="relative">
@@ -66,7 +117,7 @@ const customerOrder = () => {
                 <input
                   type="text"
                   name="description"
-                  value={formData.description || ''}
+                  value={formData.description || ""}
                   onChange={handleInputChange}
                   className="block w-full p-2 border border-gray-300 rounded-md"
                 />
@@ -76,7 +127,7 @@ const customerOrder = () => {
                 <input
                   type="text"
                   name="location"
-                  value={formData.location || ''}
+                  value={formData.location || ""}
                   onChange={handleInputChange}
                   className="block w-full p-2 border border-gray-300 rounded-md"
                 />
@@ -86,7 +137,7 @@ const customerOrder = () => {
                 <input
                   type="text"
                   name="technician_type"
-                  value={formData.technician_type || ''}
+                  value={formData.technician_type || ""}
                   onChange={handleInputChange}
                   className="block w-full p-2 border border-gray-300 rounded-md"
                 />
@@ -106,7 +157,7 @@ const customerOrder = () => {
                 <input
                   type="text"
                   name="address"
-                  value={formData.address || ''}
+                  value={formData.address || ""}
                   onChange={handleInputChange}
                   className="block w-full p-2 border border-gray-300 rounded-md"
                 />
@@ -129,70 +180,146 @@ const customerOrder = () => {
             </div>
           </div>
         ) : null}
-        <div className="bg-red">
-          <div className="pb-2 mb-8 border-b">Accepted Orders</div> {/* Category title */}
-          <div className="flex flex-wrap gap-5">
-            {data1.map(order => (
-              order.state_is_ongoing && (
-                <div key={order.id} className="w-1/3 p-4 border">
-                  {/* Card content */}
-                  <img src={order.image} alt={order.description} className="w-full mb-2" />
-                  <h3 className="text-lg font-semibold">{order.description}</h3>
-                  <p>Technician Type: {order.technician_type}</p>
-                  <p>Address: {order.address}</p>
-                  <p>Creation Timestamp: {order.created_at}</p>
-                  {order.eta_arrival_time && (
-                    <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
-                  )}
-                  <div className="flex justify-between mt-4">
-                    <button onClick={() => handleDeleteOrder(order.id)} className="px-4 py-2 text-white bg-red-500 rounded-md">Delete</button>
-                    <button onClick={() => handleRateOrder(order.id)} className="px-4 py-2 text-white bg-green-500 rounded-md">Done</button>
-                  </div>
-                </div>
-              )
-            ))}
+
+        {showModalrate ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+            <div className="p-8 bg-white rounded-lg shadow-lg">
+              <label className="block mb-2">
+                Feedback:
+                <input
+                  type="text"
+                  name="feedback"
+                  onChange={handleInputChangerating}
+                  className="block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </label>
+              <label className="block mb-2">
+                Rating:
+                <input
+                  type="number"
+                  name="rating"
+                  onChange={handleInputChangerating}
+                  className="block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </label>
+
+              <div className="flex justify-between mt-4">
+                <button
+                  type="button"
+                  className="px-4 py-2 text-white bg-blue-500 rounded-md"
+                  onClick={() => handleUpdateClickrating()}
+                >
+                  send
+                </button>
+                <button
+                  className="px-4 py-2 text-white bg-red-500 rounded-md"
+                  onClick={() => setShowModalrate(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="mt-8 bg-red">
-          <div className="pb-2 mb-8 border-b">Panding order</div> {/* Category title */}
+        ) : null}
+
+        <div className="bg-red">
+          <div className="pb-2 mb-8 border-b">Accepted Orders</div>{" "}
+          {/* Category title */}
           <div className="flex flex-wrap gap-5">
-            {data1.map(order => (
-              !order.state_is_ongoing && (
-                <div key={order.id} className="w-1/3 p-4 border">
-                  {/* Card content */}
-                  <img src={order.image} alt={order.description} className="w-full mb-2" />
-                  <h3 className="text-lg font-semibold">{order.description}</h3>
-                  <p>Technician Type: {order.technician_type}</p>
-                  <p>Address: {order.address}</p>
-                  <p>Creation Timestamp: {order.created_at}</p>
-                  {order.eta_arrival_time && (
-                    <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
-                  )}
-                  <div className="flex justify-between mt-4">
-                    <button
-                      onClick={() => handleDeleteOrder(order.id)}
-                      className="px-4 py-2 text-white bg-red-500 rounded-md"
-                    >
-                      Delete
-                    </button>
-                    <div>
+            {data1.map(
+              (order) =>
+                order.state_is_ongoing && (
+                  <div key={order.id} className="w-1/3 p-4 border">
+                    {/* Card content */}
+                    <img
+                      src={order.image}
+                      alt={order.description}
+                      className="w-full mb-2"
+                    />
+
+                    <h3 className="text-lg font-semibold">
+                      {order.description}
+                    </h3>
+                    <p>
+                      Technician Name:{" "}
+                      <Link href="/techprofile">
+                        {order.technician_name.username}
+                      </Link>
+                    </p>
+                    <p>Technician Type: {order.technician_type}</p>
+                    <p>Address: {order.address}</p>
+                    <p>Creation Timestamp: {order.created_at}</p>
+                    {order.eta_arrival_time && (
+                      <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
+                    )}
+                    <div className="flex justify-between mt-4">
                       <button
-                        type="button"
-                        className="px-4 py-2 text-white bg-blue-500 rounded-md"
-                        onClick={() => handleUpdateClick1(order.id)}
-                      // key={order.id}
+                        onClick={() => handleDeleteOrder(order.id)}
+                        className="px-4 py-2 text-white bg-red-500 rounded-md"
                       >
-                        Update
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => handleRateOrder(order.id)}
+                        className="px-4 py-2 text-white bg-green-500 rounded-md"
+                      >
+                        Done
                       </button>
                     </div>
                   </div>
-                </div>
-              )
-            ))}
+                )
+            )}
+          </div>
+        </div>
+
+        <div className="mt-8 bg-red">
+          <div className="pb-2 mb-8 border-b">Panding order</div>{" "}
+          {/* Category title */}
+          <div className="flex flex-wrap gap-5">
+            {data1.map(
+              (order) =>
+                !order.state_is_ongoing && (
+                  <div key={order.id} className="w-1/3 p-4 border">
+                    {/* Card content */}
+                    <img
+                      src={order.image}
+                      alt={order.description}
+                      className="w-full mb-2"
+                    />
+                    <h3 className="text-lg font-semibold">
+                      {order.description}
+                    </h3>
+                    <p>Technician Type: {order.technician_type}</p>
+                    <p>Address: {order.address}</p>
+                    <p>Creation Timestamp: {order.created_at}</p>
+                    {order.eta_arrival_time && (
+                      <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
+                    )}
+                    <div className="flex justify-between mt-4">
+                      <button
+                        onClick={() => handleDeleteOrder(order.id)}
+                        className="px-4 py-2 text-white bg-red-500 rounded-md"
+                      >
+                        Delete
+                      </button>
+                      <div>
+                        <button
+                          type="button"
+                          className="px-4 py-2 text-white bg-blue-500 rounded-md"
+                          onClick={() => handleUpdateClick1(order.id)}
+                          // key={order.id}
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )
+            )}
           </div>
         </div>
       </div>
-    )
-  };
-}
+    );
+  }
+};
 export default customerOrder;
