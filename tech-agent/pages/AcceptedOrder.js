@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie"; // Import Cookies
 const acceptedorder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL;
+  const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
   const router = useRouter(); // Initialize the router object
   const { user, setToken } = useAuth();
   const url = urlenv + "/api/technician/techacceptedlist/";
@@ -55,8 +56,8 @@ const acceptedorder = () => {
           {data1.map((order) => (
             <div key={order.id} className="w-1/3 p-4 border">
               <img
-                src={order.image}
-                alt={order.description}
+                src={imageurl+order.image}
+                alt={order.image}
                 className="w-full mb-2"
               />
               <h3 className="text-lg font-semibold">{order.description}</h3>

@@ -9,6 +9,7 @@ import { useAuth } from '@/context/auth';
 
 const UserProfile = () => {
   const { user } = useAuth();
+  const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const router = useRouter(); // Initialize the router object
   const url = user ? urlenv + `/api/customer/profile/${user.username}/`: null;

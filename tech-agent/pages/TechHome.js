@@ -7,6 +7,7 @@ import Cookies from "js-cookie"; // Import Cookies
 
 const TechHome = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
+  const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
   const { user, setToken } = useAuth();
   const router = useRouter();
   const url = urlenv + '/api/technician/hometechnician/';
@@ -49,7 +50,7 @@ const TechHome = () => {
           <div className="gap-5 flex-c">
             {data1.map(order => (
               <div key={order.id} className="w-1/3 p-4 border">
-                <img src={order.image} alt={order.description} className="w-full mb-2" />
+                <img src={imageurl+order.image} alt={order.description} className="w-full mb-2" />
                 <h2 className="text-lg font-semibold">{order.description}</h2>
                 <p>Technician Type: {order.technician_type}</p>
                 {order.eta_arrival_time && <p>ETA Arrival Time: {order.eta_arrival_time}</p>}
