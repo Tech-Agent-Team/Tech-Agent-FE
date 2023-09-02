@@ -86,6 +86,16 @@ const customerOrder = () => {
     }
   };
 
+  const tecnicianViewHandler= async (event)=>{
+    event.preventDefault();
+    const nametechnitian= event.currentTarget.getAttribute("TechnicianName");
+    router.push({
+      pathname:"/techprofileview",
+      query:{nametechnitian:nametechnitian}
+    })
+  }
+
+
   const handleUpdateClickrating = () => {
     console.log("Feedback:", feedback);
     console.log("id:", selectedOrderIdrating);
@@ -241,11 +251,14 @@ const customerOrder = () => {
                       {order.description}
                     </h3>
                     <p>
-                      Technician Name:{" "}
-                      <Link href="/techprofile">
-                        {order.technician_name.username}
-                      </Link>
+                      Go to Technician Profile:{" "} 
                     </p>
+                    <span
+                    onClick={tecnicianViewHandler} 
+                    TechnicianName={order.technician_name.username} >
+                      {order.technician_name.username}
+                    </span>
+                    
                     <p>Technician Type: {order.technician_type}</p>
                     <p>Address: {order.address}</p>
                     <p>Creation Timestamp: {order.created_at}</p>
