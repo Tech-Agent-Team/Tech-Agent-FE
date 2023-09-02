@@ -8,6 +8,7 @@ const acceptedorder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const router = useRouter(); // Initialize the router object
   const { user, setToken } = useAuth();
+  const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
   const url = urlenv + "/api/technician/techacceptedlist/";
   const { response: data1, error: error1, createResource4 } = useResource(url);
   const handleSubmit = async (event, id) => {
@@ -55,7 +56,7 @@ const acceptedorder = () => {
           {data1.map((order) => (
             <div key={order.id} className="w-1/3 p-4 border">
               <img
-                src={order.image}
+                src={imageurl+order.image}
                 alt={order.description}
                 className="w-full mb-2"
               />

@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth';
+import { useRouter } from 'next/router'; // Import useRouter
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const router = useRouter(); // Initialize the router
 
   return (
     <header className="bg-gray-900">
@@ -17,9 +19,21 @@ const Header = () => {
           {!user ? (
             <>
               <li className="ml-auto">
-                <Link href="/aboutpage">
-                  <button className="text-white cursor-pointer">About</button>
-                </Link>
+                {/* <Link href="/aboutpage"> */}
+                <a href="#about">
+                  <button className="text-white cursor-pointer">About Us</button>
+                  </a>
+                {/* </Link> */}
+              </li>
+              <li className="ml-auto">
+                <a href="#footer">
+                  <button className="text-white cursor-pointer">Contact Us</button>
+                </a>
+              </li>
+              <li className="ml-auto">
+                <a href="#service">
+                  <button className="text-white cursor-pointer">Services</button>
+                </a>
               </li>
               <li className="ml-auto">
                 <Link href="/LoginPage">
@@ -27,6 +41,8 @@ const Header = () => {
                 </Link>
               </li>
             </>
+
+
           ) : (
             <>
               {user.is_technician ? (

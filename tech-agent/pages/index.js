@@ -3,7 +3,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/styles.module.css';
 import { useAuth } from '@/context/auth';
+import AboutPagetext from '@/components/AboutPagetext';
 import { useRouter } from 'next/router'; // Import the useRouter hook
+import AboutPage from '@/components/aboutpage';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -72,12 +74,16 @@ const Home = () => {
               </p>
             </div>
           </div>
-
           <div className="container p-10 mx-auto">
-            {/* Your additional content here */}
+        <AboutPagetext/>
+          </div>
+          <div className="container p-10 mx-auto">
+        <AboutPage/>
           </div>
 
-          <div style={{ flex: 1 }}>{/* Your main content here */}</div>
+
+
+          <div id='footer' style={{ flex: 1 }}>{/* Your main content here */}</div>
           <Footer style={{ flexShrink: 0 }} />
         </div>
       </div>

@@ -1,0 +1,39 @@
+/* cardStyles.module.css */
+
+.card {
+  display: flex; /* Use flexbox to center items vertically and horizontally */
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  width: 400px; /* Adjust the width as needed */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px; /* Adjust the padding as needed */
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  text-align: center; /* Center the text horizontally */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card figure {
+  /* Styles for your card images */
+  width: 100%; /* Ensure the image takes the full width of the card */
+  display: flex; /* Use flexbox to center the image within the figure */
+  align-items: center; /* Center the image vertically within the figure */
+  justify-content: center; /* Center the image horizontally within the figure */
+}
+
+.card h3 {
+  font-size: 1.2rem; /* Adjust the font size as needed */
+  font-weight: bold;
+  text-align: center; /* Center the text horizontally */
+}
+
+.card p {
+  /* Styles for your card content text */
+  text-align: center; /* Center the text horizontally */
+}

@@ -3,9 +3,11 @@ import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 import { useRouter } from 'next/router';
+
 import axios from 'axios'
 const customerOrder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
+  const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
   const url = urlenv + '/api/customer/myorders/';
   const { response: data1, error: error1, createResource4, deleteResource, updateResource, updaterating, updaterating2 } = useResource(url);
   const handleSubmit = async (event, id) => {
@@ -266,7 +268,7 @@ const customerOrder = () => {
               order.state_is_ongoing && (
                 <div key={order.id} className="w-1/3 p-4 border">
                   {/* Card content */}
-                  <img src={order.image} alt={order.description} className="w-full mb-2" />
+                  <img src={imageurl+order.image} alt={order.description} className="w-full mb-2" />
                   <h3 className="text-lg font-semibold">{order.description}</h3>
                   <p>Technician Name: {order.technician_name.username}</p>
                   <p>
@@ -322,7 +324,7 @@ const customerOrder = () => {
                 <div key={order.id} className="w-1/3 p-4 border">
 
                   {/* Card content */}
-                  <img src={order.image} alt={order.description} className="w-full mb-2" />
+                  <img src={imageurl+order.image} alt={order.description} className="w-full mb-2" />
                   <h3 className="text-lg font-semibold">{order.description}</h3>
                   <p>Technician Type: {order.technician_type}</p>
                   <p>Address: {order.address}</p>

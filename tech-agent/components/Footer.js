@@ -7,7 +7,7 @@ import { FaYoutube } from "react-icons/fa";
 function Footer() {
 	return (
 		<>
-			<div className="flex flex-col items-start justify-around w-full p-20 bg-black-50 h-1/2 md:flex-row">
+			<div className="flex flex-col items-start justify-around w-full p-20 bg-gray-800 h-1/2 md:flex-row">
 				<div className="p-5 ">
 					<ul>
 						<p className="pb-6 text-3xl font-bold text-white-800">
@@ -80,7 +80,7 @@ function Footer() {
 				</div>
 			</div>
 			<div className="flex flex-col items-center justify-center p-5 text-center bg-gray-500">
-				<h1 className="font-semibold  text-white-800">
+				<h1 className="font-semibold text-white-800">
 					© 2023 All rights reserved | Build with ❤ by{" "}
 					<span className="font-semibold cursor-pointer hover:text-blue-600">
 						TECH AGENT{" "}
