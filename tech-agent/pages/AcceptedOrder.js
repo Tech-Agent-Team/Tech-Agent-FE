@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { useAuth } from "@/context/auth";
-
 import useResource from "@/Hooks/useResource";
 import { useRouter } from "next/router";
-import Link from "next/link";
-
+import Cookies from "js-cookie"; // Import Cookies
 const acceptedorder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const router = useRouter(); // Initialize the router object
-  const { user } = useAuth();
-  // const [usernameeffect,setusernameeffect]=useState(null)
+  const { user, setToken } = useAuth();
   const url = urlenv + "/api/technician/techacceptedlist/";
   const { response: data1, error: error1, createResource4 } = useResource(url);
   const handleSubmit = async (event, id) => {
@@ -25,21 +22,30 @@ const acceptedorder = () => {
   const customerviewhandelr = async (event) => {
     event.preventDefault();
     const namecustomer = event.currentTarget.getAttribute("data-namecustomer");
-    // setusernameeffect(namecustomer)
     router.push({
       pathname: "/userprofileview",
-      query: { namecustomer: namecustomer},
+      query: { namecustomer: namecustomer },
     });
   };
   useEffect(() => {
-    // Check if the user is authenticated and their role
-    if (user) {
-      if (!user.is_technician) {
-        router.push("./CustomerOrder"); // Redirect to the technician's home
+    const tokenFromCookie = Cookies.get("token");
+    const initializeAuthStateFromCookies = async () => {
+      if (tokenFromCookie) {
+        await setToken(tokenFromCookie);
       }
-    } else {
-      router.push("../");
+    };
+    if (tokenFromCookie && !user) {
+       initializeAuthStateFromCookies()
     }
+//     لا تحمسحهم لو سمحت 
+    // Check if the user is authenticated and their role
+    // if (tokenFromCookie) {
+    //   if (!user.is_technician) {
+    //     router.push("./CustomerOrder"); // Redirect to the technician's home
+    //   }
+    // } else {
+    //   router.push("../");
+    // }
   }, [user, router]);
   if (user && user.is_technician) {
     return (

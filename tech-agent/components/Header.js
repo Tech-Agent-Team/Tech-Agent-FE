@@ -30,33 +30,52 @@ const Header = () => {
           ) : (
             <>
               {user.is_technician ? (
-                <li className="ml-auto">
-                  <Link href="/AcceptedOrder">
-                    <button className="text-white cursor-pointer">Accepted Orders</button>
-                  </Link>
-                </li>
+                <>
+                  <li className="ml-auto">
+                    <Link href="/AcceptedOrder">
+                      <button className="text-white cursor-pointer">Accepted Orders</button>
+                    </Link>
+                  </li>
+                  <li className="ml-auto">
+                    <Link href="/aboutpage">
+                      <button className="text-white cursor-pointer">About</button>
+                    </Link>
+                  </li>
+                  <li className="ml-auto">
+                    <Link href="/techprofile">
+                      <button className="text-white cursor-pointer">Profile</button>
+                    </Link>
+                  </li>
+                  <li className="ml-auto">
+                    <Link href="/">
+                      <button className="text-white cursor-pointer" onClick={logout}>Logout</button>
+                    </Link>
+                  </li>
+                </>
               ) : (
-                <li className="ml-auto">
-                  <Link href="/CustomerOrder">
-                    <button className="text-white cursor-pointer">My Order</button>
-                  </Link>
-                </li>
+                <>
+                  <li className="ml-auto">
+                    <Link href="/CustomerOrder">
+                      <button className="text-white cursor-pointer">My Order</button>
+                    </Link>
+                  </li>
+                  <li className="ml-auto">
+                    <Link href="/aboutpage">
+                      <button className="text-white cursor-pointer">About</button>
+                    </Link>
+                  </li>
+                  <li className="ml-auto">
+                    <Link href="/userprofile">
+                      <button className="text-white cursor-pointer">Profile</button>
+                    </Link>
+                  </li>
+                  <li className="ml-auto">
+                    <Link href="/">
+                      <button className="text-white cursor-pointer" onClick={logout}>Logout</button>
+                    </Link>
+                  </li>
+                </>
               )}
-              <li className="ml-auto">
-                <Link href="/aboutpage">
-                  <button className="text-white cursor-pointer">About</button>
-                </Link>
-              </li>
-              <li className="ml-auto">
-                <Link href="/techprofile">
-                  <button className="text-white cursor-pointer">Profile</button>
-                </Link>
-              </li>
-              <li className="ml-auto">
-                <Link href="/">
-                  <button className="text-white cursor-pointer" onClick={logout}>Logout</button>
-                </Link>
-              </li>
             </>
           )}
         </ul>

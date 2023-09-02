@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Link from 'next/link'; // Import Link
 
 import { useRouter } from 'next/router'; // Import the useRouter hook
 
@@ -39,6 +40,9 @@ const UserProfile = () => {
               <p className="mb-4 text-center text-gray-600">Location: {data1.location}</p>
               <p className="mb-4 text-center text-gray-600">Is Customer: {data1.is_customer ? "Yes" : "No"}</p>
               <p className="text-center text-gray-600">Number of Orders: {data1.num_orders}</p>
+              <Link href="/UpdateCustomerProfile">
+                      <button className="text-black cursor-pointer">Edit Profie</button>
+                    </Link>
             </div>
           )}
         </div>

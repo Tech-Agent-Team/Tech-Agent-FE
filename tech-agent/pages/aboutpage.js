@@ -1,5 +1,9 @@
-import React from 'react';
 import Header from '../components/Header';
+import { useRouter } from 'next/router'; // Import the useRouter hook
+import { useAuth } from '@/context/auth';
+import Cookies from "js-cookie"; // Import Cookies
+import React, { useEffect } from 'react';
+
 const teamMembers = [
     {
         name: 'Ibrahem ',
@@ -33,6 +37,20 @@ const teamMembers = [
     },
 ];
 const AboutPage = () => {
+    const router = useRouter();
+    const { user, setToken } = useAuth();
+    useEffect(() => {
+        const tokenFromCookie = Cookies.get("token");
+        const initializeAuthStateFromCookies = async () => {
+          const tokenFromCookie = Cookies.get("token");
+          if (tokenFromCookie) {
+            setToken(tokenFromCookie);
+          }
+        };
+        if (tokenFromCookie && !user) {
+          initializeAuthStateFromCookies()
+        }
+      }, [user, router]);
     return (
         <div>
             <Header />

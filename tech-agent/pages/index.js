@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from '../styles/styles.module.css';
 import { useAuth } from '@/context/auth';
-import Link from 'next/link';
 import { useRouter } from 'next/router'; // Import the useRouter hook
 
 const Home = () => {
