@@ -178,7 +178,26 @@ export default function useResource(urll) {
           throw error;
         }
       }
-
+      async function createResource5(arrivalTime,order_id) {
+        const urlpost = urlenv+`/acceptorder/${order_id}/`;
+        try {
+          const options = config();
+          options.method = 'POST';
+          options.body = JSON.stringify(arrivalTime);
+          const response = await fetch(urlpost, options);
+      
+          if (!response.ok) {
+            const responseBody = await response.text();
+            console.error('Failed to register technician. Server response:', responseBody);
+            throw new Error('Failed to register technician');
+          }
+      
+          // You can handle success here if needed
+        } catch (error) {
+          console.error('Error creating resource:', error);
+          throw error;
+        }
+      }
 
       async function createResource4(message,order_id) {
         const urlpost = urlenv+`/api/orders/comment/${order_id}/`;
@@ -239,7 +258,8 @@ export default function useResource(urll) {
         createResource4,
         updateResource,
         updaterating,
-        updaterating2
+        updaterating2,
+        createResource5
 
     }
 }

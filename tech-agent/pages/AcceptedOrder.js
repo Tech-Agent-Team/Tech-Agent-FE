@@ -37,7 +37,7 @@ const acceptedorder = () => {
     if (tokenFromCookie && !user) {
        initializeAuthStateFromCookies()
     }
-//     لا تحمسحهم لو سمحت 
+//     لا تمسحهم لو سمحت 
     // Check if the user is authenticated and their role
     // if (tokenFromCookie) {
     //   if (!user.is_technician) {

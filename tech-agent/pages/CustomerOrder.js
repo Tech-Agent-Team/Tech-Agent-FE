@@ -7,8 +7,17 @@ import axios from 'axios'
 const customerOrder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
   const url = urlenv + '/api/customer/myorders/';
-  const { response: data1, error: error1, deleteResource, updateResource, updaterating, updaterating2 } = useResource(url);
-  const router = useRouter(); // Initialize the router object
+  const { response: data1, error: error1, createResource4, deleteResource, updateResource, updaterating, updaterating2 } = useResource(url);
+  const handleSubmit = async (event, id) => {
+    event.preventDefault();
+    const message = {
+      body: event.target.message.value,
+    };
+    createResource4(message, id);
+    alert("hi");
+    event.target.reset();
+  };
+  const router = useRouter();
   const { user } = useAuth();
   const auth = useAuth();
   const handleDeleteOrder = (orderId) => {
@@ -19,7 +28,7 @@ const customerOrder = () => {
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [selectedOrderIdrating, setSelectedOrderIdrating] = useState(null);
-  
+
   const handleUpdateClick1 = (orderId) => {
     setSelectedOrderId(orderId); // Store the selected order ID
     setShowModal(true); // Open the modal
@@ -37,7 +46,18 @@ const customerOrder = () => {
     }
   }, [user, router]);
 
-///////////////rate////////////////
+
+
+  const tecnicianViewHandler= async (event)=>{
+    event.preventDefault();
+    const nametechnitian= event.currentTarget.getAttribute("TechnicianName");
+    router.push({
+      pathname:"/techprofileview",
+      query:{nametechnitian:nametechnitian}
+    })
+  }
+
+  ///////////////rate////////////////
 
   const handleRateOrder = (orderId) => {
     updaterating(orderId); // Store the selected order ID
@@ -79,7 +99,7 @@ const customerOrder = () => {
   };
 
 
-///////////////update////////////////
+  ///////////////update////////////////
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -103,10 +123,10 @@ const customerOrder = () => {
 
     const config = {
       headers: {
-          Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
-  };
-    const url=urlenv+`/updateorder/${selectedOrderId}/`
+    };
+    const url = urlenv + `/updateorder/${selectedOrderId}/`
     try {
       console.log(111111111);
       const data = await axios.put(url, formData, config);
@@ -118,13 +138,13 @@ const customerOrder = () => {
       console.error("Error:", error);
 
     }
-    
-    
+
+
   };
 
 
-  
-///////////////JSX////////////////
+
+  ///////////////JSX////////////////
 
 
   if (user && !user.is_technician) {
@@ -133,70 +153,70 @@ const customerOrder = () => {
         <Header />
         {showModal ? (
           <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50">
-    <form className="w-1/2 p-4 bg-white rounded-md" onSubmit={handleOrderSubmit}>
-      <div className="mb-4">
-        <label className="block mb-1 font-semibold text-gray-600">Description</label>
-        <input
-          className="w-full p-2 border rounded-md"
-          type="text"
-          placeholder="Enter order description"
-          name="description"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1 font-semibold text-gray-600">Location</label>
-        <input
-          className="w-full p-2 border rounded-md"
-          type="text"
-          placeholder="Enter order location"
-          name="location"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1 font-semibold text-gray-600">Technician Type</label>
-        <input
-          className="w-full p-2 border rounded-md"
-          type="text"
-          placeholder="Enter technician type"
-          name="TechnicianType"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1 font-semibold text-gray-600">Image</label>
-        <input
-          className="w-full p-2 border rounded-md"
-          type="file" 
-          accept="image/*" 
-          onChange={handleImageChange} 
-          name="image"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1 font-semibold text-gray-600">Address</label>
-        <input
-          className="w-full p-2 border rounded-md"
-          type="text"
-          placeholder="Enter address"
-          name="address"
-        />
-      </div>
+            <form className="w-1/2 p-4 bg-white rounded-md" onSubmit={handleOrderSubmit}>
+              <div className="mb-4">
+                <label className="block mb-1 font-semibold text-gray-600">Description</label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  type="text"
+                  placeholder="Enter order description"
+                  name="description"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1 font-semibold text-gray-600">Location</label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  type="text"
+                  placeholder="Enter order location"
+                  name="location"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1 font-semibold text-gray-600">Technician Type</label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  type="text"
+                  placeholder="Enter technician type"
+                  name="TechnicianType"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1 font-semibold text-gray-600">Image</label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  name="image"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-1 font-semibold text-gray-600">Address</label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  type="text"
+                  placeholder="Enter address"
+                  name="address"
+                />
+              </div>
 
-      <button
-              type="submit"
-              className="px-4 py-2 text-white bg-blue-500 rounded-md"
+              <button
+                type="submit"
+                className="px-4 py-2 text-white bg-blue-500 rounded-md"
               // onClick={() => handleUpdateClick()} // Pass the order.id here
-            >
-              Update
-            </button>
-            <button
-              className="px-4 py-2 text-white bg-red-500 rounded-md"
-              onClick={() => setShowModal(false)}
-            >
-              Close
-            </button>
-      </form>
-  </div>      
-   ) : null}
+              >
+                Update
+              </button>
+              <button
+                className="px-4 py-2 text-white bg-red-500 rounded-md"
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        ) : null}
         {showModalrate ? (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
             <div className="p-8 bg-white rounded-lg shadow-lg">
@@ -249,12 +269,41 @@ const customerOrder = () => {
                   <img src={order.image} alt={order.description} className="w-full mb-2" />
                   <h3 className="text-lg font-semibold">{order.description}</h3>
                   <p>Technician Name: {order.technician_name.username}</p>
+                  <p>
+                      Go to Technician Profile:{" "} 
+                    </p>
+                    <span
+                    onClick={tecnicianViewHandler} 
+                    TechnicianName={order.technician_name.username} >
+                      {order.technician_name.username}
+                    </span>
                   <p>Technician Type: {order.technician_type}</p>
                   <p>Address: {order.address}</p>
                   <p>Creation Timestamp: {order.created_at}</p>
                   {order.eta_arrival_time && (
                     <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
                   )}
+                  
+                  <div>
+                    {order.comments &&
+                      order.comments.map((comment) => (
+                        <div key={comment.id}>
+                          <h3 className="text-lg font-semibold">{`${comment.sender}: ${comment.body}`}</h3>
+                          {/* Render other comment properties as needed */}
+                        </div>
+                      ))}
+                  </div>
+                  <form onSubmit={event => handleSubmit(event, order.id)}>
+                    <input
+                      type="text"
+                      placeholder="Add your message"
+                      className="w-full p-2 mt-2 border rounded-md"
+                      name="message"
+                    />
+                    <button className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-md" type="submit">
+                      Send
+                    </button>
+                  </form>
                   <div className="flex justify-between mt-4">
                     <button onClick={() => handleDeleteOrder(order.id)} className="px-4 py-2 text-white bg-red-500 rounded-md">Delete</button>
                     <button onClick={() => handleRateOrder(order.id)} className="px-4 py-2 text-white bg-green-500 rounded-md">Done</button>
