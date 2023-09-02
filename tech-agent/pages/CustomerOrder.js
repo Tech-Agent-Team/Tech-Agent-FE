@@ -7,7 +7,13 @@ const customerOrder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
   const url = urlenv + '/api/customer/myorders/';
   const { response: data1, error: error1, deleteResource, updateResource } = useResource(url);
-  const router = useRouter(); // Initialize the router object
+  const handleSubmit = async (event, id) => {
+    event.preventDefault();
+    const message = {
+      body: event.target.message.value,
+    };
+  }
+  const router = useRouter(); 
   const { user } = useAuth();
   const handleDeleteOrder = (orderId) => {
     deleteResource(orderId);
@@ -144,6 +150,18 @@ const customerOrder = () => {
                   {order.eta_arrival_time && (
                     <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
                   )}
+
+                  <form onSubmit={event => handleSubmit(event, order.id)}>
+                    <input
+                      type="text"
+                      placeholder="Add your message"
+                      className="w-full p-2 mt-2 border rounded-md"
+                      name="message"
+                    />
+                    <button className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-md" type="submit">
+                      Send
+                    </button>
+                  </form>
                   <div className="flex justify-between mt-4">
                     <button onClick={() => handleDeleteOrder(order.id)} className="px-4 py-2 text-white bg-red-500 rounded-md">Delete</button>
                     <button onClick={() => handleRateOrder(order.id)} className="px-4 py-2 text-white bg-green-500 rounded-md">Done</button>
@@ -187,6 +205,9 @@ const customerOrder = () => {
                     </div>
                   </div>
                 </div>
+
+
+
               )
             ))}
           </div>
