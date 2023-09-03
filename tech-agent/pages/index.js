@@ -9,22 +9,16 @@ import AboutPage from '@/components/aboutpage';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false); // State to control text visibility
   const { user } = useAuth();
-  const router = useRouter(); // Initialize the router object
+  const router = useRouter();
+  const [textIndex, setTextIndex] = useState(0);
 
   const images = [
     'https://th.bing.com/th/id/OIP.9QYlHI6VK7Siqu87uwkFYAHaEK?pid=ImgDet&rs=1',
-    'https://th.bing.com/th/id/OIP.SaAawkADm-Yi95vM4Dzi3AHaE8?pid=ImgDet&rs=1',
-    'https://www.homehow.co.uk/images/13plasterremoval.jpg',
+
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
 
   const currentImage = images[activeIndex];
 
@@ -36,6 +30,20 @@ const Home = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
+  const dynamicText = [
+    {
+      title: 'Welcome to Tech Agent',
+      description: 'Your source for the latest technology news and trends.',
+    },
+    {
+      title: 'Stay Informed and Inspired',
+      description: 'We provide in-depth articles, reviews, and insights on gadgets, software, AI, and more.',
+    },
+    {
+      title: 'Explore the World of Technology',
+      description: 'Discover the future of innovation with Tech Agent.',
+    },
+  ];
 
   const overlayStyle = {
     position: 'absolute',
@@ -55,9 +63,25 @@ const Home = () => {
       } else {
         router.push('./userHome'); // Redirect to the user's home
       }
+    } else {
+      // When the component mounts, set a delay to make the text appear
+      const delay = setTimeout(() => {
+        setIsVisible(true);
+      }, 1000); // Adjust the delay as needed
+
+      // Cycle through the dynamic text every 3 seconds (faster transition)
+      const textInterval = setInterval(() => {
+        setTextIndex((prevIndex) => (prevIndex + 1) % dynamicText.length);
+      }, 3000); // Adjust the interval duration as needed for faster transition
+
+      return () => {
+        clearTimeout(delay); // Cleanup the timeout on unmount
+        clearInterval(textInterval); // Cleanup the interval on unmount
+      };
     }
   }, [user, router]);
   if (!user) {
+    const currentText = dynamicText[textIndex];
     return (
       <div>
         <div className={styles.container}>
@@ -66,11 +90,11 @@ const Home = () => {
           <div style={backgroundImageStyle}>
             <div style={overlayStyle}></div>
             <div className={styles.content}>
-              <h1 className={styles.heading}>Tech Agent</h1>
-              <p className={styles.paragraph}>
-                Welcome to Tech Agent, your source for the latest technology news and trends.
-                We provide in-depth articles, reviews, and insights on a wide range of topics including
-                gadgets, software, AI, and much more. Stay informed and inspired in the world of technology!
+              <h1 className={`text-3xl font-bold text-white font-dmserif ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0 transition-all duration-500'}`}>
+                {currentText.title}
+              </h1>
+              <p className={`mb-3 text-lg italic text-white ${isVisible ? 'opacity-100' : 'opacity-0 transition-opacity duration-500'}`}>
+                {currentText.description}
               </p>
             </div>
           </div>
