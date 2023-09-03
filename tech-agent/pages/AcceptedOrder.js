@@ -4,6 +4,7 @@ import { useAuth } from "@/context/auth";
 import useResource from "@/Hooks/useResource";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie"; // Import Cookies
+
 const acceptedorder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
@@ -38,15 +39,13 @@ const acceptedorder = () => {
     if (tokenFromCookie && !user) {
        initializeAuthStateFromCookies()
     }
-//     لا تمسحهم لو سمحت 
-    // Check if the user is authenticated and their role
-    // if (tokenFromCookie) {
-    //   if (!user.is_technician) {
-    //     router.push("./CustomerOrder"); // Redirect to the technician's home
-    //   }
-    // } else {
-    //   router.push("../");
-    // }
+    if (user) {
+      if (user &&!(user.is_technician)) {
+        router.push("./CustomerOrder"); 
+      }
+    } else if(!tokenFromCookie && !user){
+      router.push("../");
+    }
   }, [user, router]);
   if (user && user.is_technician) {
     return (
