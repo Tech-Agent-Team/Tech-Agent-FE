@@ -4,8 +4,9 @@ import Footer from '../components/Footer';
 import styles from '../styles/styles.module.css';
 import { useAuth } from '@/context/auth';
 import AboutPagetext from '@/components/AboutPagetext';
+import HeaderWithVideo from '@/components/video';
 import { useRouter } from 'next/router'; // Import the useRouter hook
-import AboutPage from '@/components/aboutpage';
+// import AboutPage from '@/pages/aboutpage';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -83,30 +84,43 @@ const Home = () => {
   if (!user) {
     const currentText = dynamicText[textIndex];
     return (
-      <div>
-        <div className={styles.container}>
+      <div >
+        <div className={styles.container} >
           <Header />
-
-          <div style={backgroundImageStyle}>
-            <div style={overlayStyle}></div>
-            <div className={styles.content}>
-              <h1 className={`text-3xl font-bold text-white font-dmserif ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0 transition-all duration-500'}`}>
-                {currentText.title}
-              </h1>
-              <p className={`mb-3 text-lg italic text-white ${isVisible ? 'opacity-100' : 'opacity-0 transition-opacity duration-500'}`}>
-                {currentText.description}
-              </p>
+          
+          {/* Create a parent container with a consistent width */}
+          <div className="container" style={{ width: '100%' }}>
+            {/* First div */}
+            <div style={backgroundImageStyle}>
+              <div style={overlayStyle}></div>
+              <div className={styles.content}>
+                <h1 className={`text-3xl font-bold text-white font-dmserif ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0 transition-all duration-500'}`}>
+                  {currentText.title}
+                </h1>
+                <p className={`mb-3 text-lg italic text-white ${isVisible ? 'opacity-100' : 'opacity-0 transition-opacity duration-500'}`}>
+                  {currentText.description}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="container p-10 mx-auto">
-        <AboutPagetext/>
-          </div>
-          <div className="container p-10 mx-auto">
-        <AboutPage/>
-          </div>
+  
+            {/* Second div */}
+            <div className="container p-0 m-0">
+              <AboutPagetext />
+            </div>
+            {/* <div style={{ border: '2px solid black' }}></div> */}
 
 
+            <div className="container p-0 m-0">
+              <HeaderWithVideo />
+            </div>
+            {/* <div style={{ border: '10px solid black' }}></div> */}
 
+
+            {/* <div className="container p-0 m-0">
+              <AboutPage />
+            </div> */}
+          </div>
+  
           <div id='footer' style={{ flex: 1 }}>{/* Your main content here */}</div>
           <Footer style={{ flexShrink: 0 }} />
         </div>

@@ -1,46 +1,14 @@
-.container {
-  background-color: #f1eadb;
-  border: 1px solid #f9f7f7;
-  border-radius: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%; /* Set the width to 100% to take up the full width of the page */
-  margin: 0; /* Add this line to remove any default margin */
-  padding: 0; /* Add this line to remove any default padding */
+/* about.module.css */
+.blueBackground {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://img.freepik.com/free-photo/abstract-orange-background-layout-design-studio-room-web-template-business-report-with-smooth-circle-gradient-color_1258-69033.jpg?w=996&t=st=1693761497~exp=1693762097~hmac=491696e4be92c6590f4dbe874df48d67c60ab0b5de28aecb1bd910e1ff4dac7e');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+  /* Add any other styles you want here */
 }
 
-
-/* Rest of your CSS styles for .card, .heading, and .image remain the same */
-
-
-.card {
-  width: calc(33.33% - 20px); /* Set the width of each card (subtracting margin) */
-  margin-bottom: 20px; 
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  /* box-sizing: border-box; */
-}
-
-
-  
-  /* Add a local class to the h3 selector */
-  /* You can name it whatever you like, for example, "heading" */
-  .heading {
-    color: #333;
-    font-size: 24px;
-  }
-  
-  /* Add a local class to the p selector */
-  /* You can name it whatever you like, for example, "paragraph" */
-  /* .paragraph {
-    color: #666;
-    font-size: 16px;
-    line-height: 1.5;
-  } */
-
-  .image {
-    width: 100%; /* Set the width to 100% to ensure the images have the same width */
-    height: 200px; /* Let the height adjust proportionally based on the width */
-  }

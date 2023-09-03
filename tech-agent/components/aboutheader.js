@@ -23,7 +23,7 @@ const Header = () => {
         setColor('#323B4C');
         setTextColor('orange'); // Set text color to black
       } else {
-        setColor('transparent');
+        setColor('#323B4C');
         setTextColor('orange');
       }
     };
@@ -104,11 +104,7 @@ const Header = () => {
                   <button className="text-white cursor-pointer text-1xl">Contact Us</button>
                 </a>
               </li>
-              <li className="p-4">
-                <a href="#service">
-                  <button className="text-white cursor-pointer text-1xl">Services</button>
-                </a>
-              </li>
+
               <li className="p-4">
                 <Link href="/LoginPage">
                   <button className="text-white cursor-pointer text-1xl">Login</button>
@@ -116,36 +112,8 @@ const Header = () => {
               </li>
             </ul>
 
-            <div onClick={handleNav} className="z-10 block sm:hidden">
-              {nav ? (
-                <AiOutlineClose size={50} style={{ color: `${textColor}` }} />
-              ) : (
-                <AiOutlineMenu size={50} style={{ color: `${textColor}` }} />
-              )}
-            </div>
 
-            <div
-              className={
-                nav
-                  ? 'sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-                  : 'sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-              }
-            >
-              <ul>
-                <li onClick={handleNav} className="p-4 text-8xl hover:text-gray-500">
-                  <Link href="/">Home</Link>
-                </li>
-                <li onClick={handleNav} className="p-4 text-8xl hover:text-gray-500">
-                  <Link href="#gallery">About Us</Link>
-                </li>
-                <li onClick={handleNav} className="p-4 text-8xl hover:text-gray-500">
-                  <Link href="/work">Work</Link>
-                </li>
-                <li onClick={handleNav} className="p-4 text-8xl hover:text-gray-500">
-                  <Link href="/contact">Contact</Link>
-                </li>
-              </ul>
-            </div>
+
           </>
         )}
       </div>
