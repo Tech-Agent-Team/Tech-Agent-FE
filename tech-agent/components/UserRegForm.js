@@ -1,5 +1,8 @@
+import React from 'react';
+import Link from 'next/link';
 import useResource from '@/Hooks/useResource';
 import { useRouter } from 'next/router';
+import styles from '../styles/register.module.css'; 
 
 export default function TechRegForm() {
   const { createResource2 } = useResource();
@@ -23,53 +26,66 @@ export default function TechRegForm() {
   };
 
   return (
-    <form onSubmit={handleRegisterSubmit} className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
-      <label className="block mb-2 text-black">
-        Username:
-        <input
-          type="text"
-          name="username"
-          placeholder="Enter your username"
-          required
-          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </label>
-      <label className="block mb-2 text-black">
-        Email:
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </label>
-      <label className="block mb-2 text-black">
-        Password:
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          required
-          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </label>
-      <label className="block mb-2 text-black">
-        Confirm Password:
-        <input
-          type="password"
-          name="password2"
-          placeholder="Confirm your password"
-          required
-          className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </label>
-      <button
-        type="submit"
-        className="w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-      >
-        Register
-      </button>
-    </form>
+    <div className={styles.background}>
+      <section className={styles.loginSection}>
+        <div className={styles['form-box']}>
+          <div className={styles['form-value']}>
+            <form onSubmit={handleRegisterSubmit}>
+              <h2 className={styles.h2}>Register as Customer</h2>
+              <div className={styles['inputbox']}>
+                <ion-icon name="person-outline"></ion-icon>
+                <input
+                  type="text"
+                  name="username"
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Username</label>
+              </div>
+              <div className={styles['inputbox']}>
+                <ion-icon name="mail-outline"></ion-icon>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Email</label>
+              </div>
+              <div className={styles['inputbox']}>
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input
+                  type="password"
+                  name="password"
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Password</label>
+              </div>
+              <div className={styles['inputbox']}>
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input
+                  type="password"
+                  name="password2"
+                 
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Confirm Password</label>
+              </div>
+              <button className={styles.button} type="submit">
+                Register
+              </button>
+              <div className={styles['register']}>
+                <p>Already have an account?</p>
+                <Link href="/LoginPage" legacyBehavior>
+                  <a className={styles.loginLink}>Log in</a>
+                </Link>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

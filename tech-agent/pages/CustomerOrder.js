@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 import { useRouter } from 'next/router';
+import Footer from '@/components/Footer';
 import Cookies from "js-cookie"; // Import Cookies
 import axios from 'axios'
 const customerOrder = () => {
@@ -364,7 +365,9 @@ const customerOrder = () => {
             ))}
           </div>
         </div>
+        <Footer/>
       </div>
+      
     )
   };
 }

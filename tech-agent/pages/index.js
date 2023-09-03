@@ -16,7 +16,8 @@ const Home = () => {
   const [textIndex, setTextIndex] = useState(0);
 
   const images = [
-    'https://th.bing.com/th/id/OIP.9QYlHI6VK7Siqu87uwkFYAHaEK?pid=ImgDet&rs=1',
+    'https://images-ext-2.discordapp.net/external/8m0RVq909JGwZOZOf-7Q37hZtVM-IAkH2iE3lTql8tM/%3Fw%3D1060/https/img.freepik.com/premium-photo/carpenter-shop-background-photo-carpenter-male-worker_982005-5253.jpg?width=1170&height=669',
+    'https://th.bing.com/th/id/OIP.9QYlHI6VK7Siqu87uwkFYAHaEK?pid=ImgDet&rs=1'
 
   ];
 

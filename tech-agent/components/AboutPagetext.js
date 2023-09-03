@@ -85,8 +85,8 @@ const AboutPagetext = () => {
                             />
                         </figure>
                         <div className={`${styles.overlay} absolute inset-0 flex flex-col items-center justify-center px-9 text-center opacity-0 hover:opacity-100 transition-opacity duration-500`}>
-                            <h1 className="text-3xl font-bold text-white font-dmserif">{card.name}</h1>
-                            <p className="mb-3 text-lg italic text-white transition-opacity duration-300">{card.major}</p>
+                            <h1 className="text-6xl font-bold text-white font-dmserif">{card.name}</h1>
+                            <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">{card.major}</p>
                         </div>
                     </div>
           </>

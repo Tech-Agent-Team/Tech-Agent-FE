@@ -6,8 +6,7 @@ import TechRegForm from '../components/TechRegForm';
 const TechRegPage = () => {
   return (
     <div>
-      <Header />
-      <h1>Register as Technician</h1>
+
       <TechRegForm />
     </div>
   );
