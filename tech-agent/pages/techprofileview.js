@@ -4,11 +4,10 @@ import { useRouter } from 'next/router'; // Import the useRouter hook
 
 import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
-import { useAuth } from '@/context/auth';
-
+import { useAuth , setToken } from '@/context/auth';
+import Cookies from "js-cookie"; // Import Cookies
 const UserProfile = () => {
-  const { user } = useAuth();
-  const urlenv = process.env.NEXT_PUBLIC_URL;
+  const { user , setToken } = useAuth();  const urlenv = process.env.NEXT_PUBLIC_URL;
   const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
 
   const router = useRouter(); // Initialize the router object
@@ -17,11 +16,20 @@ const UserProfile = () => {
   const { response: data1, error: error1, isLoading } = useResource(url);
 
   useEffect(() => {
+    const tokenFromCookie = Cookies.get("token");
+    const initializeAuthStateFromCookies = async () => {
+      if (tokenFromCookie) {
+        await setToken(tokenFromCookie);
+      }
+    };
+    if (tokenFromCookie && !user) {
+      initializeAuthStateFromCookies()
+    }
+    //     لا تحمسحهم لو سمحت 
+
     // Check if the user is authenticated and their role
-    if ( !nametechnitian ) {
-
-
-      router.push('../'); 
+    if (!tokenFromCookie && !user) {
+      router.push('../');
     }
   }, [user, router]);
 

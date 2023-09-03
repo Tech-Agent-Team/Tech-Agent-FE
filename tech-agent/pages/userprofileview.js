@@ -1,29 +1,35 @@
 import React, { useEffect } from 'react';
 
 import { useRouter } from 'next/router'; // Import the useRouter hook
-
+import Cookies from "js-cookie"; // Import Cookies
 import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user, setToken } = useAuth();
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const router = useRouter(); // Initialize the router object
   const { namecustomer } = router.query;
-  const url = user ? urlenv + `/api/customer/profile/${namecustomer}/`: null;
+  const url = user ? urlenv + `/api/customer/profile/${namecustomer}/` : null;
   const { response: data1, error: error1, isLoading } = useResource(url);
-  
+
   useEffect(() => {
-    // Check if the user is authenticated and their role
-    if ( !namecustomer ) {
-     
-     
-      router.push('../'); 
+    const tokenFromCookie = Cookies.get("token");
+    const initializeAuthStateFromCookies = async () => {
+      if (tokenFromCookie) {
+        await setToken(tokenFromCookie);
+      }
+    };
+    if (tokenFromCookie && !user) {
+      initializeAuthStateFromCookies()
+    }
+
+    if (!tokenFromCookie && !user) {
+      router.push('../');
     }
   }, [user, router]);
-
-  if (user ) {
+  if (user) {
     return (
       <div className="min-h-screen bg-gray-100">
         <Header />
@@ -42,7 +48,7 @@ const UserProfile = () => {
         </div>
       </div>
     );
-  } 
+  }
 };
 
 export default UserProfile;

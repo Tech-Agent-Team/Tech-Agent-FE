@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 import { useRouter } from 'next/router';
-
+import Cookies from "js-cookie"; // Import Cookies
 import axios from 'axios'
 const customerOrder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
@@ -20,8 +20,7 @@ const customerOrder = () => {
     event.target.reset();
   };
   const router = useRouter();
-  const { user } = useAuth();
-  const auth = useAuth();
+  const { user , setToken } = useAuth();  const auth = useAuth();
   const handleDeleteOrder = (orderId) => {
     deleteResource(orderId);
   };
@@ -37,17 +36,24 @@ const customerOrder = () => {
   };
 
   useEffect(() => {
-    // Check if the user is authenticated and their role
+    const tokenFromCookie = Cookies.get("token");
+    const initializeAuthStateFromCookies = async () => {
+      if (tokenFromCookie) {
+        await setToken(tokenFromCookie);
+      }
+    };
+    if (tokenFromCookie && !user) {
+       initializeAuthStateFromCookies()
+    }
     if (user) {
       if (user.is_technician) {
         router.push('./AcceptedOrder'); // Redirect to the technician's home
       }
     }
-    else {
+    else if(!tokenFromCookie && !user) {
       router.push('../');
     }
   }, [user, router]);
-
 
 
   const tecnicianViewHandler= async (event)=>{

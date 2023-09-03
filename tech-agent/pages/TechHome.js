@@ -38,8 +38,8 @@ const TechHome = () => {
         router.push('./userHome'); // Redirect to the technician's home
       }
     }
-    else {
-      router.push('../');
+    else if(!tokenFromCookie && !user) {
+            router.push('../');
     }
   }, [user, router]);
   if (user) {

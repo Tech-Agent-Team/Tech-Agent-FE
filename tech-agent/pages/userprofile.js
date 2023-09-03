@@ -2,26 +2,34 @@ import React, { useEffect } from 'react';
 import Link from 'next/link'; // Import Link
 
 import { useRouter } from 'next/router'; // Import the useRouter hook
-
+import Cookies from "js-cookie"; // Import Cookies
 import Header from '../components/Header';
 import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user ,setToken } = useAuth();
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const router = useRouter(); // Initialize the router object
   const url = user ? urlenv + `/api/customer/profile/${user.username}/`: null;
   const { response: data1, error: error1, isLoading } = useResource(url);
 
   useEffect(() => {
-    // Check if the user is authenticated and their role
+    const tokenFromCookie = Cookies.get("token");
+    const initializeAuthStateFromCookies = async () => {
+      if (tokenFromCookie) {
+        await setToken(tokenFromCookie);
+      }
+    };
+    if (tokenFromCookie && !user) {
+       initializeAuthStateFromCookies()
+    }
     if (user) {
       if (user.is_technician) {
         router.push('./techprofile'); // Redirect to the technician's home
       } 
     }
-    else {
+    else if(!tokenFromCookie && !user) {
       router.push('../'); 
     }
   }, [user, router]);
@@ -48,16 +56,7 @@ const UserProfile = () => {
         </div>
       </div>
     );
-  } else {
-    // Handle the case where the user is not authenticated or is a technician
-    return (
-      <div className="min-h-screen bg-gray-100">
-        <p className="mt-6 text-center text-red-600">
-          You do not have permission to access this page.
-        </p>
-      </div>
-    );
-  }
+  } 
 };
 
 export default UserProfile;

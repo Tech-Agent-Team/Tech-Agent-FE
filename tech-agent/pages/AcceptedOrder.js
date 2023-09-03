@@ -38,15 +38,13 @@ const acceptedorder = () => {
     if (tokenFromCookie && !user) {
        initializeAuthStateFromCookies()
     }
-//     لا تمسحهم لو سمحت 
-    // Check if the user is authenticated and their role
-    // if (tokenFromCookie) {
-    //   if (!user.is_technician) {
-    //     router.push("./CustomerOrder"); // Redirect to the technician's home
-    //   }
-    // } else {
-    //   router.push("../");
-    // }
+    if (user) {
+      if (user &&!(user.is_technician)) {
+        router.push("./CustomerOrder"); 
+      }
+    } else if(!tokenFromCookie && !user){
+      router.push("../");
+    }
   }, [user, router]);
   if (user && user.is_technician) {
     return (
