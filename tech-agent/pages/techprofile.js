@@ -26,16 +26,13 @@ const TechProfile = () => {
     if (tokenFromCookie && !user) {
        initializeAuthStateFromCookies()
     }
-    //     لا تحمسحهم لو سمحت 
-
-    // Check if the user is authenticated and their role
-    // if (tokenFromCookie) {
-    //   if (!user.is_technician) {
-    //     router.push('./userprofile'); // Redirect to the technician's home
-    //   } 
-    // } else {
-    //   router.push('../'); 
-    // }
+    if (user) {
+      if (user && !user.is_technician) {
+        router.push('./userprofile'); // Redirect to the technician's home
+      } 
+    } else if(!tokenFromCookie && !user) {
+      router.push('../'); 
+    }
   }, [user, router]);
 
   if (user && user.is_technician) {

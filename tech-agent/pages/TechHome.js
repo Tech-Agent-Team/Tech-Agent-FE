@@ -37,7 +37,8 @@ const TechHome = () => {
         router.push('./userHome'); // Redirect to the technician's home
       }
     }
-    else {
+    else if(!tokenFromCookie && !user) {
+
       router.push('../');
     }
   }, [user, router]);
