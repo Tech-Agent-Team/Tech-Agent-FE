@@ -50,7 +50,7 @@ const TechHome = () => {
         <div
           style={{
             backgroundImage:
-              'url("https://img.freepik.com/free-photo/design-space-paper-textured-background_53876-42313.jpg?w=996&t=st=1693779709~exp=1693780309~hmac=afb62b2619d27e6270124bdeeeeb40aced315ec35d84c1674e313100665e5ae8")', // Replace with your image path
+              'url("https://img.freepik.com/premium-vector/cosmetic-background-premium-podium-display-product-presentation-branding_258787-155.jpg?w=1060")', // Replace with your image path
             backgroundSize: 'cover', // Adjust as needed
             backgroundPosition: 'center', // Adjust as needed
             backgroundRepeat: 'no-repeat', // Adjust as needed
