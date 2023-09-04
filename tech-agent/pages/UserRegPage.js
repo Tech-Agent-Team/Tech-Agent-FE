@@ -8,8 +8,6 @@ const UserRegPage = () => {
 
   return (
     <div>
-      <Header />
-      <h1>Register as a customer</h1>
       <UserRegForm  />
 
     </div>
