@@ -2,6 +2,7 @@ import styles from '../styles/login.module.css'; // Import your CSS module
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth';
+// import 'ionicons/dist/css/ionicons.min.css';
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -38,21 +39,21 @@ const LoginForm = () => {
               
               <button className={styles.button} type='submit'>Log in</button>
               <div className={styles['register']}>
-                <p>
+                <p style={{padding:"20px"}}>
                   Don't have an account? 
                 </p>
                 <div className="flex justify-between">
-          <Link href="/TechRegPage" legacyBehavior>
-            <a className="p-2 mr-1 text-white bg-gray-500 rounded-md hover:bg-green-600 focus:outline-none wider whitespace-nowrap">
-              Register as Technician
-            </a>
-          </Link>
-          <Link href="/UserRegPage" legacyBehavior>
-            <a className="p-2 ml-1 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none wider whitespace-nowrap">
-              Register as customer
-            </a>
-          </Link>
-        </div>
+                  <Link href="/TechRegPage" legacyBehavior>
+                    <a className={`p-2 mr-1 ${styles.registerLink} hover:bg-orange-400`}>
+                      Register as Technician
+                    </a>
+                  </Link>
+                  <Link href="/UserRegPage" legacyBehavior>
+                    <a className={`p-2 ml-1 ${styles.registerLink} hover:bg-orange-400`}>
+                      Register as Customer
+                    </a>
+                  </Link>
+                </div>
               </div>
             </form>
           </div>

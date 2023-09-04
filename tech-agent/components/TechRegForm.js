@@ -97,10 +97,11 @@ export default function TechRegForm() {
               </div>
               <div className={styles['inputbox']}>
                 <ion-icon name="clipboard-outline"></ion-icon>
-                <textarea
+                <input
+                  type="text"
                   name="description"
                   required
-                  className={styles.textarea}
+                  className={styles.input}
                 />
                 <label className={styles.label}>Description</label>
               </div>
@@ -108,10 +109,10 @@ export default function TechRegForm() {
                 Register
               </button>
               <div className={styles['register']}>
-                <p>Already have an account?</p>
-                <Link href="/LoginPage" legacyBehavior>
-                  <a className={styles.loginLink}>Log in</a>
-                </Link>
+                <p>Already have an account?                 <Link href="/LoginPage" legacyBehavior>
+                  <a className={`${styles.loginLink} hover:bg-orange-400`}>SignIN</a>
+                </Link></p>
+
               </div>
             </form>
           </div>

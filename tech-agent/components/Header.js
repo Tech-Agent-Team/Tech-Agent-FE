@@ -20,7 +20,7 @@ const Header = () => {
   useEffect(() => {
     const changeColor = () => {
       if (window.scrollY >= 90) {
-        setColor('#6F4E37');
+        setColor('rgba(174, 125, 91, 0.8)');
         setTextColor('orange'); // Set text color to black
       } else {
         setColor('transparent');

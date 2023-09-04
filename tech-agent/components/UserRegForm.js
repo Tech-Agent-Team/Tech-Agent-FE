@@ -77,10 +77,10 @@ export default function TechRegForm() {
                 Register
               </button>
               <div className={styles['register']}>
-                <p>Already have an account?</p>
-                <Link href="/LoginPage" legacyBehavior>
-                  <a className={styles.loginLink}>Log in</a>
-                </Link>
+                <p>Already have an account?                 <Link href="/LoginPage" legacyBehavior>
+                  <a className={`${styles.loginLink} hover:bg-orange-400`}>SignIN</a>
+                </Link></p>
+
               </div>
             </form>
           </div>

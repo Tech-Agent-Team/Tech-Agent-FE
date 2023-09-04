@@ -12,14 +12,18 @@
   .form-box {
     position: relative;
     width: 400px;
-    height: 450px;
+    height: 650px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 20px;
+    border-radius: 10px;
     backdrop-filter: blur(15px);
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .button:hover {
+    background-color: rgb(163, 88, 50);
+    color: white; /* Optional: Change text color when hovered */
   }
   
   .h2 {
