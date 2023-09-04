@@ -1,41 +1,78 @@
-import React from 'react';
-import Link from 'next/link';
-import useResource from '@/Hooks/useResource';
-import { useRouter } from 'next/router';
-import styles from '../styles/techregestier.module.css'; // Make sure the CSS module filename matches
+import React from "react";
+import Link from "next/link";
+import useResource from "@/Hooks/useResource";
+import { useRouter } from "next/router";
+import styles from "../styles/techregestier.module.css"; // Make sure the CSS module filename matches
+import { useState } from "react";
 
 export default function TechRegForm() {
-  const { createResource1 } = useResource();
-  const router = useRouter();
+  const [selectedProfessions, setSelectedProfessions] = useState([]);
+  const [isProfessionsDropdownOpen, setIsProfessionsDropdownOpen] =
+    useState(false);
+  const urlenv = process.env.NEXT_PUBLIC_URL;
 
-  const handleRegisterSubmit = async (event) => {
-    event.preventDefault();
-    const newTechnician = {
-      username: event.target.username.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
-      password2: event.target.password2.value,
-      profession: event.target.profession.value,
-      image: event.target.image.value,
-      description: event.target.description.value,
-    };
+  const professions = [
+    "Electrician",
+    "Mechanical",
+    "Plumber",
+    "Painter",
+    "Construction Workers",
+    "Blacksmiths",
+    // Add other professions here
+  ];
+  const urlpost = urlenv + "/api/technician/signup/";
+  const [selectedImage, setSelectedImage] = useState(null);
 
-    try {
-      await createResource1(newTechnician);
-      router.push('/LoginPage');
-    } catch (error) {
-      console.error('Error submitting form:', error);
+  const toggleProfession = (profession) => {
+    if (selectedProfessions.includes(profession)) {
+      setSelectedProfessions(
+        selectedProfessions.filter((p) => p !== profession)
+      );
+    } else {
+      setSelectedProfessions([...selectedProfessions, profession]);
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("username", e.target.username.value);
+    formData.append("password", e.target.password.value);
+    formData.append("password2", e.target.password2.value);
+    formData.append("email", e.target.email.value);
+    formData.append("description", e.target.description.value);
+    formData.append("image", selectedImage);
+    formData.append("professions", selectedProfessions);
+
+    try {
+      const response = await fetch(urlpost, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("Account Information Updated Successfully!");
+      } else {
+        // Handle errors
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   return (
     <div className={styles.background}>
       <section className={styles.loginSection}>
-        <div className={styles['form-box']}>
-          <div className={styles['form-value']}>
-            <form onSubmit={handleRegisterSubmit}>
+        <div className={styles["form-box"]}>
+          <div className={styles["form-value"]}>
+            <form onSubmit={handleSubmit}>
               <h2 className={styles.h2}>Register as Technician</h2>
-              <div className={styles['inputbox']}>
+              <div className={styles["inputbox"]}>
                 <ion-icon name="person-outline"></ion-icon>
                 <input
                   type="text"
@@ -45,7 +82,7 @@ export default function TechRegForm() {
                 />
                 <label className={styles.label}>Username</label>
               </div>
-              <div className={styles['inputbox']}>
+              <div className={styles["inputbox"]}>
                 <ion-icon name="mail-outline"></ion-icon>
                 <input
                   type="email"
@@ -55,7 +92,7 @@ export default function TechRegForm() {
                 />
                 <label className={styles.label}>Email</label>
               </div>
-              <div className={styles['inputbox']}>
+              <div className={styles["inputbox"]}>
                 <ion-icon name="lock-closed-outline"></ion-icon>
                 <input
                   type="password"
@@ -65,7 +102,7 @@ export default function TechRegForm() {
                 />
                 <label className={styles.label}>Password</label>
               </div>
-              <div className={styles['inputbox']}>
+              <div className={styles["inputbox"]}>
                 <ion-icon name="lock-closed-outline"></ion-icon>
                 <input
                   type="password"
@@ -75,7 +112,7 @@ export default function TechRegForm() {
                 />
                 <label className={styles.label}>Confirm Password</label>
               </div>
-              <div className={styles['inputbox']}>
+              {/* <div className={styles['inputbox']}>
                 <ion-icon name="briefcase-outline"></ion-icon>
                 <input
                   type="text"
@@ -84,35 +121,90 @@ export default function TechRegForm() {
                   className={styles.input}
                 />
                 <label className={styles.label}>Profession</label>
+              </div> */}
+              <div className="mb-4">
+                <label
+                  htmlFor="image"
+                  className="block mb-2 text-sm font-medium text-white"
+                >
+                  Profile Picture
+                </label>
+                <div className="relative rounded-md shadow-sm">
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e)}
+                    className="sr-only"
+                  />
+                  <label
+                    htmlFor="image"
+                    className="flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md cursor-pointer hover:border-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-50 active:text-gray-800"
+                  >
+                    Select an Image
+                  </label>
+                </div>
               </div>
-              <div className={styles['inputbox']}>
-                <ion-icon name="image-outline"></ion-icon>
-                <input
-                  type="text"
-                  name="image"
-                  required
-                  className={styles.input}
-                />
-                <label className={styles.label}>Image URL</label>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-white">
+                  Profession
+                </label>
+                <div className="relative rounded-md shadow-sm">
+                  <div className="flex items-center justify-between w-full p-2 border rounded-lg">
+                    <span className="text-white">Select Professions</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setIsProfessionsDropdownOpen(!isProfessionsDropdownOpen)
+                      }
+                      className="w-6 h-6 text-white cursor-pointer hover:text-gray-700"
+                    >
+                      {isProfessionsDropdownOpen ? "-" : "+"}
+                    </button>
+                  </div>
+                  {isProfessionsDropdownOpen && (
+                    <div className="absolute z-10 w-full py-2 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
+                      {professions.map((profession) => (
+                        <label
+                          key={profession}
+                          className="flex items-center p-2 space-x-2 cursor-pointer hover:bg-gray-100"
+                        >
+                          <input
+                            type="checkbox"
+                            name="professions"
+                            value={profession}
+                            checked={selectedProfessions.includes(profession)}
+                            onChange={() => toggleProfession(profession)}
+                            className="mr-2"
+                          />
+                          {profession}
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className={styles['inputbox']}>
+
+              <div className={styles["inputbox"]}>
                 <ion-icon name="clipboard-outline"></ion-icon>
                 <input
                   type="text"
                   name="description"
                   required
-                  className={styles.input}
+                  className={styles.textarea}
                 />
+
                 <label className={styles.label}>Description</label>
               </div>
               <button className={styles.button} type="submit">
                 Register
               </button>
-              <div className={styles['register']}>
-                <p>Already have an account?                 <Link href="/LoginPage" legacyBehavior>
-                  <a className={`${styles.loginLink} hover:bg-orange-400`}>SignIN</a>
-                </Link></p>
-
+              <div className={styles["register"]}>
+                <p>Already have an account?</p>
+                <Link href="/LoginPage" legacyBehavior>
+                  <a className={styles.loginLink}>Log in</a>
+                </Link>
               </div>
             </form>
           </div>
