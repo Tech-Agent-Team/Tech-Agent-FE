@@ -64,7 +64,7 @@ const AboutPage = () => {
         <div id='about' className="flex items-center justify-center ">
           <div className="grid grid-cols-1 gap-40 lg:grid-cols-3">
             {teamMembers.map((member, index) => (
-              <div key={index} className="relative items-center justify-center overflow-hidden transition-shadow cursor-pointer group hover:shadow-xl hover:shadow-black/30">
+              <div key={index} className="relative items-center justify-center overflow-hidden transition-shadow cursor-pointer group hover:shadow-xl hover:shadow-black/30" >
                 <div className="h-96 w-72">
                   <img className="object-cover w-full h-full transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src={member.image} alt={member.name} />
                 </div>

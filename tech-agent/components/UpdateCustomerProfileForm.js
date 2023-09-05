@@ -1,12 +1,14 @@
 import { useAuth } from "@/context/auth";
 import Header from "./Header";
+import styles from "../styles/userupdate.module.css";
+import Link from "next/link";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL;
 
 export default function UpdateCustomerProfileForm() {
   const { user, token } = useAuth();
   console.log(token);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,52 +39,64 @@ export default function UpdateCustomerProfileForm() {
   };
 if (user){
     
-    return (
-      <div>
-        <Header /> {/* Include your Header component here */}
-  
-        <form onSubmit={handleSubmit} className="max-w-md p-4 mx-auto mt-4 border rounded-lg shadow-lg">
-          <div className="mb-4">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              defaultValue={user.phone}
-              placeholder="Change phone number"
-              className="w-full p-2 mt-1 border rounded-lg"
-            />
+  return (
+    <div className={styles.background}>
+      <section className={styles.loginSection}>
+        <div className={styles["form-box"]}>
+          <div className={styles["form-value"]}>
+
+            <form onSubmit={handleSubmit}>
+              <h2 className={styles.h2}>Update Information </h2>
+              <div className={styles["inputbox"]}>
+                <ion-icon name="person-outline"></ion-icon>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Phone</label>
+              </div>
+
+              <div className={styles["inputbox"]}>
+              <ion-icon name="lock-closed-outline"></ion-icon>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Email</label>
+              </div>
+              <div className={styles["inputbox"]}>
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  required
+                  className={styles.input}
+                />
+                <label className={styles.label}>Location</label>
+              </div>
+
+              <button className={styles.button} type="submit">
+                Update
+              </button>
+              
+              <div className={styles["register"]}>
+                <p>Back to profile ?<Link href="/userprofile" legacyBehavior>
+                  <a className={`${styles.loginLink} hover:bg-orange-400`}>Back</a>
+                </Link></p>
+
+              </div>
+            </form>
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Update Email"
-              defaultValue={user.email}
-              className="w-full p-2 mt-1 border rounded-lg"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              defaultValue={user.location}
-              placeholder="Change you location"
-              className="w-full p-2 mt-1 border rounded-lg"
-            />
-          </div>
-  
-          <div className="flex items-center justify-center h-full"> {/* Center the button */}
-            <button type="submit" className="px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600">
-              Save Changes
-            </button>
-          </div>
-        </form>
-      </div>
-    );
+        </div>
+      </section>
+    </div>
+  );
 }
 }

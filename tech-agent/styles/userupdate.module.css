@@ -1,4 +1,3 @@
-
 .loginsection {
     display: flex;
     justify-content: center;
@@ -9,7 +8,6 @@
     background-position: center;
     background-size: cover;
   }
-  
   .form-box {
     position: relative;
     width: 450px;
@@ -22,20 +20,17 @@
     justify-content: center;
     align-items: center;
   }
-  
   .h2 {
     font-size: 2em;
     color: #fff;
     text-align: center;
   }
-  
   .inputbox {
     position: relative;
-    margin: 30px 0;
+    margin: 10px 0;
     width: 310px;
     border-bottom: 2px solid #fff;
   }
-  
   .inputbox label {
     position: absolute;
     top: 50%;
@@ -46,14 +41,12 @@
     pointer-events: none;
     transition: 0.5s;
   }
-  
   .input:focus ~ label {
-    top: -5px;
+    top: -1px;
   }
   .input:valid ~ label {
-    top: -5px;
+    top: -1px;
   }
-  
   .inputbox input {
     width: 100%;
     height: 50px;
@@ -64,7 +57,6 @@
     padding: 0 35px 0 5px;
     color: #fff;
   }
-  
   .inputbox ion-icon {
     position: absolute;
     right: 8px;
@@ -72,7 +64,6 @@
     font-size: 1.2em;
     top: 20px;
   }
-  
   .forget {
     display: flex;
     justify-content: space-between;
@@ -80,44 +71,33 @@
     font-size: 0.9em;
     color: #fff;
   }
-  
   .forget label:nth-child(2) {
     order: 1;
   }
-  
   .forget label {
     display: flex;
     align-items: center;
   }
-  
   .forget label input[type="checkbox"] {
     margin-right: 6px;
   }
-  
   .forget label a {
     color: #fff;
     text-decoration: none;
   }
-  
   .forget label a:hover {
     text-decoration: underline;
   }
-
-  
   .button {
     width: 100%;
     height: 40px;
     border-radius: 40px;
-    background: #dfd9d9;
+    background: #fff;
     border: none;
     outline: none;
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
-  }
-  .button:hover {
-    background-color: rgb(163, 88, 50);
-    color: white; /* Optional: Change text color when hovered */
   }
   .register {
     font-size: 0.9em;
@@ -125,19 +105,16 @@
     text-align: center;
     margin: 25px 0 10px;
   }
-  
   .register p a {
     text-decoration: none;
     color: #fff;
     font-weight: 600;
   }
-  
   .register p a:hover {
     text-decoration: underline;
-
   }
   .background {
-    background-image: url('https://images-ext-2.discordapp.net/external/mDP92yW29yACvnsdz2oYaP10TUjk_YdJPmZVKkc7CLY/%3Fw%3D1060%26t%3Dst%3D1693778786~exp%3D1693779386~hmac%3Dba87ddc5d5a9d941f64e6637da88bd183b3f91333d015503e5b686a649a33982/https/img.freepik.com/free-photo/side-view-female-carpenter-studio-using-electric-saw_23-2148813332.jpg?width=1190&height=669');
+    background-image: url('https://images.unsplash.com/photo-1634141737347-4069b3c19ee9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -145,36 +122,20 @@
     justify-content: center;
     align-items: center;
   }
-
-  /* login.module.css */
-
-/* Style for input labels */
-.label {
-    position: absolute;
-    top: 1rem; /* Initially, the label is 1rem above the input */
-    left: 1rem;
-    transition: top 0.3s ease-out; /* Add a smooth transition effect */
+  /* Checkbox styles */
+  .inline-flex {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+    color: #fff;
   }
-  
-  /* Style for input fields */
-  .input {
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-bottom: 2px solid #333;
-    outline: none;
-    margin-top: 1rem; /* Create some space between input and label */
+  .inline-flex input[type="checkbox"] {
+    margin-right: 6px;
   }
-  
-  /* Label animation when input is focused */
-  .input:focus + .label {
-    top: -.05rem; /* Move the label up when the input is focused */
+  .inline-flex label {
+    cursor: pointer;
   }
-  
-  /* Label animation when input is valid (e.g., not empty) */
-  .input:valid + .label {
-    top: -.05rem; /* Move the label up when the input is valid */
+  .button:hover {
+    background-color: rgb(163, 88, 50);
+    color: white; /* Optional: Change text color when hovered */
   }
-  
-
-  
