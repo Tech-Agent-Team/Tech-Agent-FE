@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '@/context/auth';
-import Footer from './Footer';
 import styles from '../styles/orderuser.module.css';
+import { professions } from "@/professions"
 
 const UserOrderForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -47,7 +47,7 @@ const UserOrderForm = () => {
                 <input
                   className={`${styles.input} w-full p-2 border rounded-md`}
                   type="text"
-             
+
                   name="description"
                   required
                 />
@@ -58,7 +58,7 @@ const UserOrderForm = () => {
                 <input
                   className={`${styles.input} w-full p-2 border rounded-md`}
                   type="text"
-                 
+
                   name="location"
                   required
                 />
@@ -66,15 +66,25 @@ const UserOrderForm = () => {
               </div>
               <div className={styles['inputbox']}>
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input
+                <select
                   className={`${styles.input} w-full p-2 border rounded-md`}
-                  type="text"
-                 
                   name="TechnicianType"
                   required
-                />
-                <label className={styles.label}>Technician Type</label>
+                  style={{ background: 'black', color: 'white' }}
+                >
+                  <option value="" disabled selected>Select Technician Type</option>
+                  {professions.map((profession, index) => (
+                    <option key={index} value={profession}>
+                      {profession}
+                    </option>
+                  ))}
+                </select>
               </div>
+
+
+
+
+
               <div className={styles['inputbox']}>
                 <ion-icon name="image-outline"></ion-icon>
                 <input
@@ -92,7 +102,7 @@ const UserOrderForm = () => {
                 <input
                   className={`${styles.input} w-full p-2 border rounded-md`}
                   type="text"
-                  
+
                   name="address"
                   required
                 />

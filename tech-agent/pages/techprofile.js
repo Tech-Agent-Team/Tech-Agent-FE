@@ -14,7 +14,7 @@ const TechProfile = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL;
   const url = user ? `${urlenv}/api/technician/profile/${user.username}/` : null;
   const { response: data1, error: error1 } = useResource(url);
-  
+  console.log(data1);
   const router = useRouter(); // Initialize the router object
 
   useEffect(() => {
@@ -25,33 +25,37 @@ const TechProfile = () => {
       }
     };
     if (tokenFromCookie && !user) {
-       initializeAuthStateFromCookies()
+      initializeAuthStateFromCookies()
     }
     if (user) {
       if (user && !user.is_technician) {
         router.push('./userprofile'); // Redirect to the technician's home
-      } 
-    } else if(!tokenFromCookie && !user) {
-      router.push('../'); 
+      }
+    } else if (!tokenFromCookie && !user) {
+      router.push('../');
     }
   }, [user, router]);
 
   if (user && user.is_technician) {
     return (
-      
+
       <div className="min-h-screen bg-gray-100">
         <Header />
         <div className="max-w-2xl p-6 mx-auto">
           {data1 && data1.user && (
             <div className="p-6 bg-white rounded-lg shadow-lg">
-              <img src={imageurl+data1.image} alt="User Avatar" className="w-32 h-32 mx-auto mb-4 rounded-full" />
+              <img src={imageurl + data1.image} alt="User Avatar" className="w-32 h-32 mx-auto mb-4 rounded-full" />
               <h1 className="mb-2 text-2xl font-semibold text-center">{data1.user.username}</h1>
-              <p className="mb-4 text-center text-gray-600">Profession: {data1.profession}</p>
+              <p className="mb-4 text-gray-600">Profession: </p>
+
+              {data1.professions.map((profession, index) => (
+                <li key={index}>{profession.techProfession}</li>
+              ))}
               <p className="mb-4 text-gray-600">Description: {data1.description}</p>
               <p className="text-gray-600">Average Rating: {data1.average_rating}</p>
               <Link href="/UpdateTechnicianProfile">
-                      <button className="text-black cursor-pointer">Edit Profie</button>
-                    </Link>
+                <button className="text-black cursor-pointer">Edit Profie</button>
+              </Link>
               <div className="mt-4">
                 <h2 className="text-xl font-semibold">Feedback:</h2>
                 <ul>

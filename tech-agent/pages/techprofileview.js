@@ -43,8 +43,11 @@ const UserProfile = () => {
             <div className="p-6 bg-white rounded-lg shadow-lg">
               <img src={imageurl+data1.image} alt="User Avatar" className="w-32 h-32 mx-auto mb-4 rounded-full" />
               <h1 className="mb-2 text-2xl font-semibold text-center">{data1.user.username}</h1>
-              <p className="mb-4 text-center text-gray-600">Profession: {data1.profession}</p>
-              <p className="mb-4 text-gray-600">Description: {data1.description}</p>
+              <p className="mb-4 text-gray-600">Profession: </p>
+
+              {data1.professions.map((profession, index) => (
+                <li key={index}>{profession.techProfession}</li>
+              ))}              <p className="mb-4 text-gray-600">Description: {data1.description}</p>
               <p className="text-gray-600">Average Rating: {data1.average_rating}</p>
             </div>
           )}
