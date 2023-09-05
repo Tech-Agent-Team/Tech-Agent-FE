@@ -1,0 +1,68 @@
+.flipcardcontainer {
+    /* --hue: 150; */
+    --primary: hsl(var(--hue), 50%, 50%);
+    --white-1: hsl(0, 0%, 90%);
+    --white-2: hsl(0, 0%, 80%);
+    --dark: hsl(var(--hue), 25%, 10%);
+    --grey: hsl(0, 28%, 95%);
+  
+    width: 310px;
+    height: 500px;
+    margin: 40px;
+  
+    perspective: 1000px;
+  }
+  /* ${styles.flipcard} */
+  
+  /* .flip-card */
+  .flipcard{
+    width: inherit;
+    height: inherit;
+  background-color: #6F4E37;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: .6s .1s;
+  }
+  
+  /* hover and focus-within states */
+  .flipcardcontainer:hover .flipcard,
+  .flipcardcontainer:focus-within .flipcard {
+    transform: rotateY(180deg);
+  }
+  
+  /* .card-... */
+  .cardfront,
+  .cardback
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+  
+    background: var(--dark);
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  
+    backface-visibility: hidden;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* .card-front */
+  .cardfront {
+    transform: rotateY(0deg);
+    z-index: 2;
+  }
+  
+  /* .card-back */
+  .cardback {
+    transform: rotateY(180deg);
+    z-index: 1;
+  }
+
+  /* .stop-flip {
+    animation-play-state: paused;
+  } */
