@@ -16,6 +16,30 @@ export default function useResource(urll) {
       };
   }
 
+  async function cancelResource(id) {
+
+    const urlpost = urlenv+`/api/technician/cancelorder/${id}/`;
+    try {
+      if(!token){
+        return;
+      }
+
+      const options = config();
+      options.method = 'PUT';
+      const response = await fetch(urlpost, options);
+  
+      if (!response.ok) {
+        const responseBody = await response.text();
+        console.error('an error occured while doing the cancel operation:', responseBody);
+        throw new Error('Failed to Cancel order');
+      }
+  
+      // You can handle success here if needed
+    } catch (error) {
+      console.error('Error creating resource:', error);
+      throw error;
+    }
+  }
   async function fetchResource(cacheKey) {
       const [url, access] = cacheKey;
       if (!access) {
@@ -259,7 +283,8 @@ export default function useResource(urll) {
         updateResource,
         updaterating,
         updaterating2,
-        createResource5
+        createResource5,
+        cancelResource
 
     }
 }

@@ -67,21 +67,28 @@ const UserOrderForm = () => {
               </div>
 
               <div className={styles['inputbox']}>
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <select
-                  className={`${styles.input} w-full p-2 border rounded-md`}
-                  name="TechnicianType"
-                  required
-                  style={{ background: 'black', color: 'white' }}
-                >
-                  <option value="" disabled selected>Select Technician Type</option>
-                  {professions.map((profession, index) => (
-                    <option key={index} value={profession}>
-                      {profession}
-                    </option>
-                  ))}
-                </select>
-              </div>
+  <ion-icon name="lock-closed-outline"></ion-icon>
+  <select
+    className={`${styles.input} w-full p-2 border rounded-md `}
+    name="TechnicianType"
+    required
+    style={{
+      background: 'rgba(139, 69, 19, 0.05)',
+      color: 'black',
+      border: '1px solid white', // Change the border color to white
+    }}
+  >
+    <option value="" disabled selected>
+      Select Technician Type
+    </option>
+    {professions.map((profession, index) => (
+      <option key={index} value={profession} style={{ color: 'white' }}>
+        {profession}
+      </option>
+    ))}
+  </select>
+</div>
+
 
               <div className={styles['inputbox']}>
                 <ion-icon name="image-outline"></ion-icon>

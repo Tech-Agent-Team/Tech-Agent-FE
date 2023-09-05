@@ -95,15 +95,15 @@ const TechHome = () => {
                   style={{
                     display: "flex",
                     alignItems: "center", // Vertically center the card content
-                    
+
                   }}
-                > 
-                 
+                >
+
                   <div
                     className="bg-transparent cursor-pointer card group perspective "
                     style={{
                       width: "500px",
-                      backgroundColor: "rgba(111, 78, 55, 0.7)" ,
+                      backgroundColor: "rgba(111, 78, 55, 0.7)",
                       height: "550px",
                       borderRadius: "4%",
                       boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
@@ -112,11 +112,11 @@ const TechHome = () => {
                       padding: "40px", // Horizontally center the card content
                       margin: "20px",
                       backgroundRepeat: "no-repeat",
-                      position:'relative'
+                      position: 'relative'
 
                     }}
                   >
-                     
+
 
                     <div
                       className="card-content"
@@ -129,33 +129,33 @@ const TechHome = () => {
                         Technician Type: {order.technician_type}
                       </p>
                       {order.eta_arrival_time && (
-  <p className="mb-2 text-gray-600">
-    <span className="font-semibold">ETA Arrival Time:</span> {order.eta_arrival_time}
-  </p>
-)}
+                        <p className="mb-2 text-gray-600">
+                          <span className="font-semibold">ETA Arrival Time:</span> {order.eta_arrival_time}
+                        </p>
+                      )}
 
                       <form onSubmit={(event) => handleSubmit(event, order.id)}>
-                      <input
-    type="datetime-local"
-    id="eta_arrival_time"
-    name="eta_arrival_time"
-    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-    required
-  />
+                        <input
+                          type="datetime-local"
+                          id="eta_arrival_time"
+                          name="eta_arrival_time"
+                          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+                          required
+                        />
                         {/* <div
       className="absolute inset-0 h-100 w-200 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/70"
       // style={{ borderRadius: "4%",  width: "70%", height: "100%" ,position: 'absolute',}}
     ></div> */}
                         <button
-className="px-3 py-3 font-semibold text-white duration-1000 delay-200 scale-0 -translate-x-1/2 -translate-y-1/2  group-hover:bottom-60 group-hover:scale-125"
-type="submit"
-                          style={{backgroundColor:"#6F4E37"}}
+                          className="px-3 py-3 font-semibold text-white duration-1000 delay-200 scale-0 -translate-x-1/2 -translate-y-1/2 group-hover:bottom-60 group-hover:scale-125"
+                          type="submit"
+                          style={{ backgroundColor: "#6F4E37" }}
                         >
                           Accept
                         </button>
                       </form>
                     </div>
-                    
+
                     <div
                       style={{
                         width: "100%",

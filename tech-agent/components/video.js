@@ -9,13 +9,14 @@ const HeaderWithVideo = () => {
             <header>
                 <div
                     className="image-overlay"
+                    // style={{ width: '100%' ,height:'2000px'}}
                     onClick={() => setIsOpen(true)} // Open the video when the image is clicked
                 >
                     <img
-                        src="/images/about_banner_720.png"
+                        src="/images/about_banner_720.jpg"
                         alt="Header Image"
                         className="header-image" // Add a local class to the img element
-                        style={{ width: '100%' }}
+                        style={{ width: '100%' ,height:'30%'}}
                     />
                 </div>
             </header>
