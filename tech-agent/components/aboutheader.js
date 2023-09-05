@@ -6,7 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Header = () => {
   const [nav, setNav] = useState(false);
-  const [color, setColor] = useState('#323B4C');
+  const [color, setColor] = useState('rgba(174, 125, 91, 0.8)'); 
   const [textColor, setTextColor] = useState('black'); // Set text color to black
 
   const { user, logout } = useAuth();
@@ -20,10 +20,10 @@ const Header = () => {
   useEffect(() => {
     const changeColor = () => {
       if (window.scrollY >= 90) {
-        setColor('#323B4C');
+        setColor('rgba(174, 125, 91, 0.8)');
         setTextColor('orange'); // Set text color to black
       } else {
-        setColor('#323B4C');
+        setColor('rgba(174, 125, 91, 0.8)');
         setTextColor('orange');
       }
     };
@@ -46,7 +46,7 @@ const Header = () => {
         {user ? (
           <>
             {user.is_technician ? (
-              <>
+              
                 <ul style={{ color: `${textColor}` }} className="hidden sm:flex">
                   <li className="p-4">
                     <Link href="/AcceptedOrder">
@@ -64,9 +64,9 @@ const Header = () => {
                     </Link>
                   </li>
                 </ul>
-              </>
+              
             ) : (
-              <>
+              
                 <ul style={{ color: `${textColor}` }} className="hidden sm:flex ">
                   <li className="p-4">
                     <a href="/userprofile">
@@ -85,7 +85,7 @@ const Header = () => {
                   </li>
 
                 </ul>
-              </>
+              
 
 
 

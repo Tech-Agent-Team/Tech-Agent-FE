@@ -54,45 +54,47 @@ const AboutPagetext = () => {
     };
 
     return (
-        <div className={`${styles.container} ${styles.blueBackground}`} id='service'>
+        
+            <div className={`${styles.container} ${styles.blueBackground}`} id='service'>
 
-            <Carousel
-                showArrows={true}
-                infiniteLoop={true}
-                showStatus={false}
-                showThumbs={false}
-                autoPlay={true}
-                interval={4000}
-                transitionTime={500}
-            >
-                {carddetail.map((card, index) => (
-          <>
- 
-                    <div key={index} className={`${cardStyles.card} relative items-center justify-center overflow-hidden transition-shadow cursor-pointer group hover:shadow-xl hover:shadow-black/30`} style={customCardStyle}>
-                    <h1 className={`text-6xl font-bold text-white p-3 `}>
-                               OUR SERVICES
-                  </h1>
-                        <figure className="pic-hover hover-scale ">
-                            <a className="image-popup" href={card.image}>
-                                <i className="fa fa-image btn-action btn-action-hide"></i>
-                            </a>
-                            <span className="bg-overlay"></span>
-                            <img
-                                src={card.image}
-                                className={`${styles.image} transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125`}
-                                alt=""
-                                style={customImageStyle}
-                            />
-                        </figure>
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
-                <div className="absolute inset-0 flex translate-y-[50%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">                            <h1 className="text-6xl font-bold text-white font-dmserif">{card.name}</h1>
-                            <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">{card.major}</p>
-                        </div>
-                    </div>
-          </>
-                ))}
-            </Carousel>
-        </div>
+                <Carousel
+                    showArrows={true}
+                    infiniteLoop={true}
+                    showStatus={false}
+                    showThumbs={false}
+                    autoPlay={true}
+                    interval={4000}
+                    transitionTime={500}
+                >
+                    {carddetail.map((card, index) => (
+                        <>
+
+                            <div key={index} className={`${cardStyles.card} relative items-center justify-center overflow-hidden transition-shadow cursor-pointer group hover:shadow-xl hover:shadow-black/30`} style={customCardStyle}>
+                                <h1 className={`text-6xl font-bold text-white p-3 `}>
+                                    OUR SERVICES
+                                </h1>
+                                <figure className="pic-hover hover-scale ">
+                                    <a className="image-popup" href={card.image}>
+                                        <i className="fa fa-image btn-action btn-action-hide"></i>
+                                    </a>
+                                    <span className="bg-overlay"></span>
+                                    <img
+                                        src={card.image}
+                                        className={`${styles.image} transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125`}
+                                        alt=""
+                                        style={customImageStyle}
+                                    />
+                                </figure>
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+                                <div className="absolute inset-0 flex translate-y-[50%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">                            <h1 className="text-6xl font-bold text-white font-dmserif">{card.name}</h1>
+                                    <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">{card.major}</p>
+                                </div>
+                            </div>
+                        </>
+                    ))}
+                </Carousel>
+            </div>
+        
     );
 };
 
