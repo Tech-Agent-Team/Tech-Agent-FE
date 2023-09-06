@@ -7,7 +7,6 @@ import useResource from '@/Hooks/useResource';
 import { useAuth } from '@/context/auth';
 import Footer from '@/components/Footer';
 import styles from "../styles/techprofile.module.css"; // Import the styles used in TechProfile
-import Link from 'next/link';
 
 const UserProfile = () => {
   const { user, setToken } = useAuth();
@@ -37,7 +36,7 @@ const UserProfile = () => {
       <>
         <div
           style={{
-            backgroundImage: 'url("https://img.freepik.com/free-photo/high-angle-tools-table-arrangement_23-2149916247.jpg?w=996&t=st=1693910421~exp=1693911021~hmac=dd8aeae8fc4bcfa6c3deaea9227d506b3fb9228430368582e987ce2669adefd3")',
+            backgroundImage: 'url("https://images.unsplash.com/photo-1578058404413-1234a4bad74c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -52,7 +51,7 @@ const UserProfile = () => {
           <Header />
           {data1 && (
             <div className={`flex  ${styles.profileContainer}`} style={{
-              backgroundColor: 'rgba(139, 69, 19, 0.4)', // Brown color with opacity
+              backgroundColor: 'rgb(174, 125, 91,0.6)', // Brown color with opacity
               width: '50%',
               height: '600px',
               padding: '30px', // Add padding to create space from all sides
@@ -62,20 +61,27 @@ const UserProfile = () => {
               borderRadius: '10%',
               flexDirection: 'column'
             }}>
-              <h1 className="mb-2 text-2xl font-semibold text-center text-orange-400">{data1.username}</h1>
-              <p className="mb-4 text-center text-white">Email: {data1.email}</p>
-              <p className="mb-4 text-center text-white">Phone: {data1.phone}</p>
-              <p className="mb-4 text-center text-white">Location: {data1.location}</p>
-              <p className="mb-4 text-center text-white">Is Customer: {data1.is_customer ? "Yes" : "No"}</p>
-              <p className="text-center text-white">Number of Orders: {data1.num_orders}</p>
-              <Link href="/UpdateTechnicianProfile">
-                <button className={`${styles.button} text-black cursor-pointer`}>Edit Profile</button>
-              </Link>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', }}>
+                <div style={{ display: 'flex', justifyContent: 'center', height: '90%', fontSize: '140%' }}>
+
+                  <img src="/images/default_user.png" style={{ width: '50%', }} />
+                  <div style={{ marginTop: '10%', display: 'flex', flexDirection: 'column', alignItems: 'baseline' }}>
+                    <h1 className="mb-4 text-4xl font-semibold text-center text-orange-400">{data1.username}</h1>
+                    <p className="mb-4 text-center text-white">Email: {data1.email}</p>
+                    <p className="mb-4 text-center text-white">Phone: {data1.phone}</p>
+                    <p className="mb-4 text-center text-white">Location: {data1.location}</p>
+                    <p className="text-center text-white">Number of Orders: {data1.num_orders}</p>
+                  </div>
+
+                </div>
+
+              </div>
             </div>
           )}
 
         </div>
-        <div><Footer /></div>
+        <div>  <Footer style={{ flexShrink: 0 }} /></div>
       </>
     );
   }

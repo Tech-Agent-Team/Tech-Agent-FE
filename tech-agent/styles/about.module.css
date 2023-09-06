@@ -3,7 +3,8 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: url('https://img.freepik.com/free-photo/design-space-paper-textured-background_53876-42313.jpg?w=996&t=st=1693779709~exp=1693780309~hmac=afb62b2619d27e6270124bdeeeeb40aced315ec35d84c1674e313100665e5ae8');
+  background-image: url('https://img.freepik.com/premium-photo/close-up-light-wooden-floorboard-textured-background_53876-84943.jpg?w=996');
+
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -12,3 +13,56 @@
   /* Add any other styles you want here */
 }
 
+
+
+.carousel {
+  display: flex;
+  width: 200%; /* Adjust to the number of images you have */
+  transition: transform 2s ease-in-out;
+}
+
+.carousel-image {
+  flex: 1 0 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease-in-out; /* Added filter transition */
+
+}
+
+/* styles.css */
+/* styles.module.css */
+
+/* .text{
+font-style: italic;
+
+} */
+
+/* .container{
+white-space: normal;  
+} */
+
+.show {
+  opacity: 1;
+}
+
+
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+
+.heading {
+  font-size: 6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+}

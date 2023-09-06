@@ -138,6 +138,15 @@ export default function TechRegForm() {
                   </label>
                 </div>
               </div>
+
+
+
+
+
+
+
+
+              
               <div className="mb-4">
   <label className="block text-sm font-medium text-white">Profession</label>
   <div className="relative rounded-md shadow-sm">

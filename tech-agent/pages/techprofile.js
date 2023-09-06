@@ -89,7 +89,7 @@ const TechProfile = () => {
         <div
           style={{
             backgroundImage:
-              'url("https://img.freepik.com/free-photo/high-angle-tools-table-arrangement_23-2149916247.jpg?w=996&t=st=1693910421~exp=1693911021~hmac=dd8aeae8fc4bcfa6c3deaea9227d506b3fb9228430368582e987ce2669adefd3")',
+              'url("https://img.freepik.com/free-photo/close-up-tools-workshop_23-2148836011.jpg?size=626&ext=jpg&ga=GA1.1.1442964426.1687759231")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -102,26 +102,28 @@ const TechProfile = () => {
           <Header />
           {data1 && data1.user && (
             <div
-              className={`flex gap-20 ${styles.profileContainer}`}
+              className={`flex  ${styles.profileContainer}`}
               style={{
-                backgroundColor: 'rgba(139, 69, 19, 0.4)',
-                width: '60%',
+                backgroundColor: 'rgba(174, 125, 91,0.6)',
+                width: '50%',
                 height: '600px',
                 padding: '30px',
                 justifyContent: 'space-around',
+                flexDirection: 'column',
                 alignItems: 'center',
                 margin: '120px',
                 borderRadius: '10%',
               }}
             >
-              <div>
+              <div style={{ display: 'flex', justifyContent: 'center' , height:'90%',fontSize:'140%',marginTop:'5%'}} >
+              <div style={{marginRight:'4%'}}>
                 <img
                   src={imageurl + data1.image}
                   alt="User Avatar"
                   className="w-32 h-32 mx-auto mb-4 rounded-full"
                   style={{
-                    width: '400px',
-                    height: '400px',
+                    width: '300px',
+                    height: '300px',
                     transform: `perspective(600px) rotateY(${isHovered ? '30deg' : '0deg'})`,
                     transition: 'transform 0.3s ease-in-out',
                   }}
@@ -129,9 +131,9 @@ const TechProfile = () => {
                   onMouseLeave={handleMouseLeave}
                 />
               </div>
-              <div>
-                
-                <h1 className="mb-2 text-2xl font-semibold text-orange-700">{data1.user.username}</h1>
+              <div style={{  display: 'flex', flexDirection: 'column', alignItems: 'baseline' }}>
+
+                <h1 className="mb-4 text-4xl font-semibold text-center text-orange-400">{data1.user.username}</h1>
                 <div className={`${styles.rating}`}>
                   <p className='mb-1 text-white '>Rating:</p>
                   <img
@@ -142,24 +144,32 @@ const TechProfile = () => {
                 </div>
                 <h1 className="mb-4 text-white">Description: {data1.description}</h1>
                 <h1 className="mb-4 text-white">Phone Number: {data1.user.phone}</h1>
-                <div>
-                  <button
-                    className={`${styles.button} text-black cursor-pointer`}
-                    onClick={openProfessionsModal}
-                  >
-                    {isProfessionsVisible ? '-' : '+'} Professions
-                  </button>
+                <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', justifyContent: 'space-between' }}>
+                  <div style={{ margin: 'auto', width: '120%', marginTop: '10%'}}>
+                    <button
+
+                      className={`${styles.button} text-black cursor-pointer`}
+                      onClick={openProfessionsModal}
+                    >
+                      {isProfessionsVisible ? '-' : '+'} Professions
+                    </button>
+
+                  </div>
+                  <div style={{ margin: 'auto', width: '120%', marginTop: '10%' }}>
+                    <button
+                      className={`${styles.button} text-black cursor-pointer`} // Apply the same style here
+                      onClick={openFeedbackModal}
+                    >
+                      {isFeedbackModalOpen ? '-' : '+'} Feedback {/* Using the same icon style as Professions */}
+                    </button>
+
+                  </div>
                 </div>
-                <button
-                  className={`${styles.button} text-black cursor-pointer`} // Apply the same style here
-                  onClick={openFeedbackModal}
-                >
-                  {isFeedbackModalOpen ? '-' : '+'} Feedback {/* Using the same icon style as Professions */}
-                </button>
-                <FeedbackModal isOpen={isFeedbackModalOpen} onClose={closeFeedbackModal} feedbackList={data1.feedback_list} />
-
-
+              </div>
                 
+              </div>
+              <div style={{ margin: '0px', width: '50%' }}>
+                <FeedbackModal isOpen={isFeedbackModalOpen} onClose={closeFeedbackModal} feedbackList={data1.feedback_list} />
                 <Link href="/UpdateTechnicianProfile">
                   <button className={`${styles.button} text-black cursor-pointer`}>Edit Profile</button>
                 </Link>
@@ -170,7 +180,7 @@ const TechProfile = () => {
           {error1 && <div className="text-red-500">Error loading profile data: {error1.message}</div>}
         </div>
         <div>
-          <Footer />
+        <Footer style={{ flexShrink: 0 }} />
         </div>
 
         <ProfessionsModal

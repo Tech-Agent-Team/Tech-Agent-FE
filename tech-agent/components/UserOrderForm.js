@@ -74,15 +74,15 @@ const UserOrderForm = () => {
     required
     style={{
       background: 'rgba(139, 69, 19, 0.05)',
-      color: 'black',
+      color: 'white',
       border: '1px solid white', // Change the border color to white
     }}
   >
-    <option value="" disabled selected>
+    <option value="" disabled selected style={{color:'black'}}>
       Select Technician Type
     </option>
     {professions.map((profession, index) => (
-      <option key={index} value={profession} style={{ color: 'white' }}>
+      <option key={index} value={profession} style={{ color: 'black' }}>
         {profession}
       </option>
     ))}
@@ -90,18 +90,34 @@ const UserOrderForm = () => {
 </div>
 
 
-              <div className={styles['inputbox']}>
-                <ion-icon name="image-outline"></ion-icon>
-                <input
-                  className={`${styles.input} w-full p-2 border rounded-md`}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  name="image"
-                  required
-                />
-                <label className={styles.label} style={{ position: 'absolute', top: 0, left: '10px' }}>Image</label>
-              </div>
+<div className="mb-4">
+  <label
+    htmlFor="image"
+    className="block mb-2 text-sm font-medium text-white"
+  >
+    Image
+  </label>
+  <div className="relative rounded-md shadow-sm">
+    <input
+      type="file"
+      id="image"
+      name="image"
+      accept="image/*"
+     onChange={handleImageChange}
+      className="sr-only"
+        required
+    />
+    <label
+      htmlFor="image"
+      className="flex justify-center px-4 py-2 text-sm font-medium text-white border border-gray-300 rounded-md cursor-pointer hover:border-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-50 active:text-gray-800"
+    >
+      Select an Image
+    </label>
+  </div>
+</div>
+
+
+
               <div className={styles['inputbox']}>
                 <ion-icon name="location-outline"></ion-icon>
                 <input
@@ -115,7 +131,7 @@ const UserOrderForm = () => {
               </div>
               <button
                 type="submit"
-                className={`${styles.button} w-full p-2 text-gray bg-green-500 rounded-md hover:bg-gray-600 focus:outline-none`}
+                className={`${styles.button} w-full p-2 text-gray bg-green-500 rounded-md hover:bg-orange-400 focus:outline-none`}
               >
                 Create Order
               </button>

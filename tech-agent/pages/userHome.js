@@ -45,13 +45,13 @@ const UserHome = () => {
   }}
 >
         <Header />
-        <div className="flex items-center justify-center min-h-screen gap-9">
-          <div className="flex w-full max-w-screen-xl p-8 mx-auto">
+        <div className="flex items-center justify-center min-h-screen " >
+          <div className="flex w-full max-w-screen-xl gap-20 p-8 mx-auto">
             <UserOrderForm />
             <ElectricianImage />
           </div>
         </div>
-        <Footer/>
+        <Footer style={{ flexShrink: 0 }} />
       </div>
     );
   }

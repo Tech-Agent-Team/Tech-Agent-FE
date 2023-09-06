@@ -34,7 +34,7 @@ const AboutPagetext = () => {
         {
             name: 'Carpenters',
             major: "A carpenter (colloquially known as a 'chippy') is a tradesperson who works with timber, primarily wood, wallboard and plywood. Carpenters are hired for commercial, industrial or residential projects, where they build and install foundations, frames and walls as well as fixtures and hardware as required",
-            image: 'https://img.freepik.com/free-photo/carpenter-working-house_329181-9435.jpg?w=996&t=st=1693756970~exp=1693757570~hmac=0f76cd88c6e15851f85928c5905f14fc059f3c90ec5f5764b37951bf60547668',
+            image: 'https://cdn.discordapp.com/attachments/1144954756834533478/1149058620835778611/cropped-man-drilling-woodwork-workshop_1098-19130.png',
         },
         {
             name: 'Blacksmiths',
@@ -95,7 +95,7 @@ const AboutPagetext = () => {
                             />
                         </figure>
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
-                <div className="absolute inset-0 flex translate-y-[50%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">                            <h1 className="text-6xl font-bold text-white font-dmserif">{card.name}</h1>
+                <div className="absolute inset-0 flex translate-y-[65%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">                            <h1 className="text-6xl font-bold text-white font-dmserif">{card.name}</h1>
                             {/* <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">{card.major}</p> */}
                             <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">
                   {splitTextIntoRows(card.major).map((row, index) => (

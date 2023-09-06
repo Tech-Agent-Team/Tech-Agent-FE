@@ -48,43 +48,60 @@ const Header = () => {
             {user.is_technician ? (
               <>
                 <ul style={{ color: `${textColor}` }} className="hidden sm:flex">
-                  <li className="p-4">
-                    <Link href="/AcceptedOrder">
-                      <button className="text-white cursor-pointer text-1xl">Accepted Orders</button>
-                    </Link>
-                  </li>
-                  <li className="p-4">
-                    <Link href="/techprofile">
-                      <button className="text-white cursor-pointer text-1xl">Profile</button>
-                    </Link>
-                  </li>
-                  <li className="p-4">
-                    <Link href="/">
-                      <button className="text-white cursor-pointer text-1xl" onClick={logout}>Logout</button>
-                    </Link>
+                <li className="p-4">
+                  <Link href="/AcceptedOrder">
+                    <button className="text-white cursor-pointer text-1xl hover:bg-orange-300 hover:text-white hover:p-1" style={{ borderRadius: '10px' }}>
+                      Accepted Orders
+                    </button>
+                  </Link>
+                </li>
+                <li className="p-4">
+                  <Link href="/techprofile">
+                    <button className="text-white cursor-pointer text-1xl hover:bg-orange-300 hover:text-white hover:p-1" style={{ borderRadius: '10px' }}>
+                      Profile
+                    </button>
+                  </Link>
+                </li>
+                <li className="p-4">
+                  <Link href="/">
+                    <button className="text-white cursor-pointer text-1xl hover:bg-orange-300 hover:text-white hover:p-1" style={{ borderRadius: '10px' }} onClick={logout}>
+                      Logout
+                    </button>                    </Link>
                   </li>
                 </ul>
               </>
             ) : (
               <>
-                <ul style={{ color: `${textColor}` }} className="hidden sm:flex ">
-                  <li className="p-4">
-                    <a href="/userprofile">
-                      <button className="text-white cursor-pointer text-1xl">Profile</button>
-                    </a>
-                  </li>
-                  <li className="p-4">
-                    <a href="/CustomerOrder">
-                      <button className="text-white cursor-pointer text-1xl">My Order</button>
-                    </a>
-                  </li>
-                  <li className="p-4">
-                    <a href="/">
-                      <button className="text-white cursor-pointer text-1xl" onClick={logout}>Logout</button>
-                    </a>
-                  </li>
-
-                </ul>
+                <ul className="hidden sm:flex">
+  <li className="p-4">
+    <a
+      href="/userprofile"
+      className="hover:bg-orange-300 hover:text-white hover:p-1"
+      style={{ borderRadius: '10px' }}
+    >
+      <button className="text-white cursor-pointer text-1xl">Profile</button>
+    </a>
+  </li>
+  <li className="p-4">
+    <a
+      href="/CustomerOrder"
+      className="hover:bg-orange-300 hover:text-white hover:p-1"
+      style={{ borderRadius: '10px' }}
+    >
+      <button className="text-white cursor-pointer text-1xl">My Order</button>
+    </a>
+  </li>
+  <li className="p-4">
+    <a
+      href="/"
+      className="hover:bg-orange-300 hover:text-white hover:p-1"
+      style={{ borderRadius: '10px' }}
+      onClick={logout}
+    >
+      <button className="text-white cursor-pointer text-1xl">Logout</button>
+    </a>
+  </li>
+</ul>
               </>
 
 
@@ -94,21 +111,26 @@ const Header = () => {
         ) : (
           <>
             <ul style={{ color: `${textColor}` }} className="hidden sm:flex">
-              <li className="p-4">
-                <a href="/aboutpage">
-                  <button className="text-white cursor-pointer text-1xl">About Us</button>
-                </a>
-              </li>
-              <li className="p-4">
-                <a href="#footer">
-                  <button className="text-white cursor-pointer text-1xl">Contact Us</button>
-                </a>
-              </li>
-
-              <li className="p-4">
-                <Link href="/LoginPage">
-                  <button className="text-white cursor-pointer text-1xl">Login</button>
-                </Link>
+            <li className="p-4">
+    <a href="/aboutpage">
+      <button className="text-white cursor-pointer text-1xl hover:bg-orange-300 hover:text-white hover:p-1" style={{ borderRadius: '10px' }}>
+        About Us
+      </button>
+    </a>
+  </li>
+  <li className="p-4">
+    <a href="#footer">
+      <button className="text-white cursor-pointer text-1xl hover:bg-orange-300 hover:text-white hover:p-1" style={{ borderRadius: '10px' }}>
+        Contact Us
+      </button>
+    </a>
+  </li>
+  <li className="p-4">
+    <Link href="/LoginPage">
+      <button className="text-white cursor-pointer text-1xl hover:bg-orange-300 hover:text-white hover:p-1" style={{ borderRadius: '10px' }}>
+        Login
+      </button>
+    </Link>
               </li>
             </ul>
 

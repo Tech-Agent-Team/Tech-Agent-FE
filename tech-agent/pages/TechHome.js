@@ -26,7 +26,7 @@ const TechHome = () => {
       eta_arrival_time: event.target.eta_arrival_time.value,
     };
     createResource3(arrivalTime, id);
-    alert("hi");
+    // alert("hi");
   };
 
   useEffect(() => {
@@ -134,26 +134,31 @@ const TechHome = () => {
                         </p>
                       )}
 
-                      <form onSubmit={(event) => handleSubmit(event, order.id)}>
-                        <input
-                          type="datetime-local"
-                          id="eta_arrival_time"
-                          name="eta_arrival_time"
-                          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-                          required
-                        />
-                        {/* <div
-      className="absolute inset-0 h-100 w-200 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/70"
-      // style={{ borderRadius: "4%",  width: "70%", height: "100%" ,position: 'absolute',}}
-    ></div> */}
-                        <button
-                          className="px-3 py-3 font-semibold text-white duration-1000 delay-200 scale-0 -translate-x-1/2 -translate-y-1/2 group-hover:bottom-60 group-hover:scale-125"
-                          type="submit"
-                          style={{ backgroundColor: "#6F4E37" }}
-                        >
-                          Accept
-                        </button>
-                      </form>
+<form onSubmit={(event) => handleSubmit(event, order.id)}  style={{display:'flex' }}>
+
+                      
+<input
+  type="datetime-local"
+  id="eta_arrival_time"
+  name="eta_arrival_time"
+  className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+  required
+/>
+
+ <div>
+ <button
+  className="px-2 py-3 font-semibold text-white "
+  type="submit"
+  style={{ backgroundColor: "#6F4E37" }}
+>
+  Accept
+</button>
+</div>
+
+</form>
+
+
+                      
                     </div>
 
                     <div
@@ -181,7 +186,7 @@ const TechHome = () => {
               ))}
             </Slider>
           </div>
-          <Footer />
+          <Footer style={{ flexShrink: 0 }} />
         </div>
       );
     }

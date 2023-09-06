@@ -6,8 +6,8 @@
   --dark: hsl(var(--hue), 25%, 10%);
   --grey: hsl(0, 28%, 95%);
 
-  width: 310px;
-  height: 400px;
+  width: 410px;
+  height: 500px;
   margin: 40px;
 
   perspective: 1000px;
@@ -16,7 +16,7 @@
 .flipcard{
   width: inherit;
   height: inherit;
-  background-color: #6F4E37 ;
+  background-color: rgba(255, 255, 255, 0.2) ;
   position: relative;
   transform-style: preserve-3d;
   transition: .6s .1s;
@@ -59,12 +59,13 @@
 .cardback {
   transform: rotateY(180deg);
   z-index: 1;
-  background-color: burlywood;
+  background-color:   rgba(222, 177, 135, 0.2);
+
 }
 
 .fixedimagesize {
   height: 200px; 
-  width:310px;
+  width: 350px;;
   margin-top: 0%;}
 
 
@@ -74,19 +75,23 @@
     height: 100%;
   }
   
-  .messagebox {
-    flex: 1;
-    overflow-y: scroll;
-    background-color: rgba(239, 234, 231, 0.8);
-    border-radius: 5px;
-    padding: 10px;
+   .messagebox {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: flex-start; */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll  ;
   }
   
   .message {
-    background-color: rgba(214, 211, 208, 0.2);
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0px 15px 5px 0px rgba(0,0,0,0.5);
+    
+    margin-bottom: 20px;
   }
   
   .messagesender {
@@ -117,7 +122,7 @@
     background-color: rgba(174, 125, 91, 0.8);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: black;
     padding: 8px 12px;
     cursor: pointer;
   }

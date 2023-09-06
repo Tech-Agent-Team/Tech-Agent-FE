@@ -18,6 +18,13 @@ const Home = () => {
 
 
   const images = [
+    // 'https://img.freepik.com/premium-photo/minimal-construction-creative-concept-with-miniatures_950002-147515.jpg?w=1060',
+    'https://img.freepik.com/premium-photo/great-workers_553012-18220.jpg?w=1060',
+    'https://img.freepik.com/free-photo/minimalist-hallways-background_23-2149745362.jpg?t=st=1694026571~exp=1694027171~hmac=668e25f370a5ee1cf42db893c876ee88a3159e342afa4ee3b0a5cb22aa83da93',
+    // 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1605125626499-e2c7efbd1ab3%3Fcrop%3Dfaces%252Cedges%26cs%3Dtinysrgb%26fit%3Dcrop%26fm%3Djpg%26ixid%3DM3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkzOTk1NDE1fA%26ixlib%3Drb-4.0.3%26q%3D60%26w%3D1200%26auto%3Dformat%26h%3D630%26mark-w%3D64%26mark-align%3Dtop%252Cleft%26mark-pad%3D50%26blend-mode%3Dnormal%26blend-alpha%3D10%26blend-w%3D1%26mark%3Dhttps%253A%252F%252Fimages.unsplash.com%252Fopengraph%252Flogo.png%26blend%3D000000',
+    // 'https://5.imimg.com/data5/SELLER/Default/2023/2/YB/TD/OG/24358266/hotel-interior-designing-services-500x500.jpg',
+    // 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1469289759076-d1484757abc3%3Fcrop%3Dfaces%252Cedges%26cs%3Dtinysrgb%26fit%3Dcrop%26fm%3Djpg%26ixid%3DM3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkzOTk1MDk5fA%26ixlib%3Drb-4.0.3%26q%3D60%26w%3D1200%26auto%3Dformat%26h%3D630%26mark-w%3D64%26mark-align%3Dtop%252Cleft%26mark-pad%3D50%26blend-mode%3Dnormal%26blend-alpha%3D10%26blend-w%3D1%26mark%3Dhttps%253A%252F%252Fimages.unsplash.com%252Fopengraph%252Flogo.png%26blend%3D000000',
+    'https://media5.architecturemedia.net/site_media/media/cache/f0/76/f076564d8ddf1c6980257094135ca3c8.jpg',
     'https://xo3d.co.uk/wp-content/uploads/2019/10/bathroom-3d-render-high-resolution.jpg',
     'https://images-ext-2.discordapp.net/external/8m0RVq909JGwZOZOf-7Q37hZtVM-IAkH2iE3lTql8tM/%3Fw%3D1060/https/img.freepik.com/premium-photo/carpenter-shop-background-photo-carpenter-male-worker_982005-5253.jpg?width=1170&height=669',
     'https://th.bing.com/th/id/OIP.9QYlHI6VK7Siqu87uwkFYAHaEK?pid=ImgDet&rs=1'
@@ -115,7 +122,7 @@ const Home = () => {
                 <h1 className={`text-4xl font-bold text-white font-dmserif ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[-100%] opacity-0 transition-all duration-500'}`}>
                   {currentText.title}
                 </h1>
-                <p className={` text-xl  text-white ${isVisible ? 'opacity-100' : 'opacity-0 transition-opacity duration-500'} ${styles.text}`}>
+                <p className={` text-2xl  text-white ${isVisible ? 'opacity-100' : 'opacity-0 transition-opacity duration-500'} ${styles.text}`}>
                   {splitTextIntoRows(currentText.description).map((row, index) => (
                     <span key={index}>{row}<br /></span>
                   ))}
