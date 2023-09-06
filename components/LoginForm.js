@@ -15,7 +15,7 @@ const LoginForm = () => {
       await login(username, password);
       router.push('/LoginPage');
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Incorrect email or password');
     }
   };
 

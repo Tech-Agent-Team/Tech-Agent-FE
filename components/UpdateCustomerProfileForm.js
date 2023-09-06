@@ -2,13 +2,14 @@ import { useAuth } from "@/context/auth";
 import Header from "./Header";
 import styles from "../styles/userupdate.module.css";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
 const baseUrl = process.env.NEXT_PUBLIC_URL;
 
 export default function UpdateCustomerProfileForm() {
   const { user, token } = useAuth();
   console.log(token);
-  
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,9 +30,9 @@ export default function UpdateCustomerProfileForm() {
       });
 
       if (response.ok) {
-        alert("Account Information Updated Successfuly!");
+        router.push("./userprofile")
       } else {
-        // Handle errors
+        alert("email already exist");
       }
     } catch (error) {
       console.error('Error:', error);

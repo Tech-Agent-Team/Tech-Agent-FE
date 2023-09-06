@@ -4,26 +4,21 @@ import styles from "../styles/techupdate.module.css";
 const baseUrl = process.env.NEXT_PUBLIC_URL;
 import Link from "next/link";
 import { professions } from "@/professions"
+import { useRouter } from "next/router";
+
 export default function UpdateTechnicianProfileForm() {
   const { user, token } = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
   const [isProfessionsDropdownOpen, setIsProfessionsDropdownOpen] = useState(false);
   const [selectedProfessions, setSelectedProfessions] = useState([]);
+  const router = useRouter();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
   };
 
-  // const professions = [
-  //   "Electrician",
-  //   "Mechanical",
-  //   "Plumber",
-  //   "Painter",
-  //   "Construction Workers",
-  //   "Blacksmiths",
-  //   // Add other professions here
-  // ];
+
 
   const toggleProfession = (profession) => {
     if (selectedProfessions.includes(profession)) {
@@ -63,9 +58,9 @@ export default function UpdateTechnicianProfileForm() {
       );
 
       if (response.ok) {
-        alert("Account Information Updated Successfully!");
+        router.push("./techprofile")
       } else {
-        // Handle errors
+        alert("email already exist");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -90,7 +85,6 @@ export default function UpdateTechnicianProfileForm() {
       );
 
       if (response.ok) {
-        alert("Profile Information Updated Successfully!");
       } else {
         // Handle errors
       }
@@ -167,42 +161,42 @@ export default function UpdateTechnicianProfileForm() {
                   </div>
                 </div>
                 <div className="mb-4">
-  <label className="block text-sm font-medium text-white">Profession</label>
-  <div className="relative rounded-md shadow-sm">
-    <div
-      onClick={() => setIsProfessionsDropdownOpen(!isProfessionsDropdownOpen)}
-      className="flex items-center justify-between w-full p-2 border rounded-lg cursor-pointer"
-    >
-      <span className="text-white">Select Professions</span>
-      <button
-        type="button"
-        className="w-6 h-6 text-white cursor-pointer hover:text-gray-700"
-      >
-        {isProfessionsDropdownOpen ? "-" : "+"}
-      </button>
-    </div>
-    {isProfessionsDropdownOpen && (
-      <div className="absolute z-10 w-full py-2 mt-2 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg max-h-60">
-        {professions.map((profession) => (
-          <label
-            key={profession}
-            className="flex items-center p-2 space-x-2 cursor-pointer hover:bg-gray-100"
-          >
-            <input
-              type="checkbox"
-              name="professions"
-              value={profession}
-              checked={selectedProfessions.includes(profession)}
-              onChange={() => toggleProfession(profession)}
-              className="mr-2"
-            />
-            {profession}
-          </label>
-        ))}
-      </div>
-    )}
-  </div>
-</div>
+                  <label className="block text-sm font-medium text-white">Profession</label>
+                  <div className="relative rounded-md shadow-sm">
+                    <div
+                      onClick={() => setIsProfessionsDropdownOpen(!isProfessionsDropdownOpen)}
+                      className="flex items-center justify-between w-full p-2 border rounded-lg cursor-pointer"
+                    >
+                      <span className="text-white">Select Professions</span>
+                      <button
+                        type="button"
+                        className="w-6 h-6 text-white cursor-pointer hover:text-gray-700"
+                      >
+                        {isProfessionsDropdownOpen ? "-" : "+"}
+                      </button>
+                    </div>
+                    {isProfessionsDropdownOpen && (
+                      <div className="absolute z-10 w-full py-2 mt-2 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg max-h-60">
+                        {professions.map((profession) => (
+                          <label
+                            key={profession}
+                            className="flex items-center p-2 space-x-2 cursor-pointer hover:bg-gray-100"
+                          >
+                            <input
+                              type="checkbox"
+                              name="professions"
+                              value={profession}
+                              checked={selectedProfessions.includes(profession)}
+                              onChange={() => toggleProfession(profession)}
+                              className="mr-2"
+                            />
+                            {profession}
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
 
                 <div className={styles["inputbox"]}>
                   <ion-icon name="clipboard-outline"></ion-icon>

@@ -58,8 +58,8 @@ export default function TechRegForm() {
       });
 
       if (response.ok) {
-        alert("Account Information Updated Successfully!");
-      } else {
+""
+  } else {
         // Handle errors
       }
     } catch (error) {

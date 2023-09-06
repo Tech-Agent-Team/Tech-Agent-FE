@@ -32,7 +32,7 @@ const UserOrderForm = () => {
     };
     const url = urlenv + '/createorder/';
     const data = await axios.post(url, formData, config);
-    alert('Created successfully!');
+    
     event.target.reset();
   };
 

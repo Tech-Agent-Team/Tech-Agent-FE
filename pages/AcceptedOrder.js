@@ -27,7 +27,6 @@ const acceptedorder = () => {
       body: event.target.message.value,
     };
     createResource4(message, id);
-    // alert("hi");
     event.target.reset();
   };
   const customerviewhandelr = async (event) => {
@@ -42,11 +41,10 @@ const acceptedorder = () => {
     console.log(id);
     try {
       cancelResource(id);
-      alert("Order Cancelled");
+     
     } catch (error) {
       // Handle errors here, e.g., display an error message
       console.error("Error cancelling order:", error);
-      alert("Failed to cancel order");
     }
   };
   useEffect(() => {

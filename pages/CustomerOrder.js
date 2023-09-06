@@ -29,7 +29,7 @@ const customerOrder = () => {
       body: event.target.message.value,
     };
     createResource4(message, id);
-    // alert("hi");
+    
     event.target.reset();
   };
   const router = useRouter();
@@ -113,9 +113,8 @@ const customerOrder = () => {
 
       // Close the modal if needed
       setShowModalrate(false);
-      // alert("hi");
     } else {
-      alert("no");
+      pass
     }
   };
 
@@ -153,7 +152,6 @@ const customerOrder = () => {
       const data = await axios.put(url, formData, config);
       setShowModal(false);
       // console.log(2222222222);
-      alert("updated successfully !");
       event.target.reset();
     } catch (error) {
       console.error("Error:", error);

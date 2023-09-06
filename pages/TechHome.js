@@ -26,7 +26,7 @@ const TechHome = () => {
       eta_arrival_time: event.target.eta_arrival_time.value,
     };
     createResource3(arrivalTime, id);
-    // alert("hi");
+    
   };
 
   useEffect(() => {
