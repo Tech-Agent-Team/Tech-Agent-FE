@@ -214,3 +214,23 @@
     font-size: 14px; /* Font size */
   }
   
+  /* Adjust the star image width and height */
+.starImage {
+  width: 5rem;
+  height: 1rem;
+  margin: 0px;
+}
+
+.rating {
+  display: flex; /* Use flex display */
+  align-items: center; /* Align items vertically */
+}
+
+/* Adjust the space between the text and the image as needed */
+.rating p {
+  margin-right: 8px; /* Add spacing between the text and image */
+}
+.professions-container {
+  max-height: 150px; /* Set the desired maximum height */
+  overflow-y: scroll; /* Enable vertical scrolling */
+}
