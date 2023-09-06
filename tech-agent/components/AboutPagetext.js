@@ -53,6 +53,16 @@ const AboutPagetext = () => {
         height: '600px', // Adjust the height as per your requirements
     };
 
+
+    const splitTextIntoRows = (text) => {
+        const words = text.split(" ");
+        const rows = [];
+        for (let i = 0; i < words.length; i += 6) {
+          rows.push(words.slice(i, i + 5).join(" "));
+        }
+        return rows;
+      };
+
     return (
         <div className={`${styles.container} ${styles.blueBackground}`} id='service'>
 
@@ -86,7 +96,12 @@ const AboutPagetext = () => {
                         </figure>
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
                 <div className="absolute inset-0 flex translate-y-[50%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">                            <h1 className="text-6xl font-bold text-white font-dmserif">{card.name}</h1>
-                            <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">{card.major}</p>
+                            {/* <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">{card.major}</p> */}
+                            <p className="mb-3 text-2xl italic text-white transition-opacity duration-300">
+                  {splitTextIntoRows(card.major).map((row, index) => (
+                    <span key={index}>{row}<br /></span>
+                  ))}
+                </p>
                         </div>
                     </div>
           </>

@@ -5,8 +5,12 @@ import { useAuth } from '@/context/auth';
 import { useRouter } from 'next/router';
 import Cookies from "js-cookie"; // Import Cookies
 import axios from 'axios'
+import Footer from '@/components/Footer';
 import styles from '../styles/myorder.module.css';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles1 from '../styles/orderuser.module.css';
+import { faPaperPlane, faCancel } from "@fortawesome/free-solid-svg-icons";
+import { professions } from "@/professions"
 const customerOrder = () => {
   const urlenv = process.env.NEXT_PUBLIC_URL
   const imageurl = "http://res.cloudinary.com/dt0dx45wy/"
@@ -176,71 +180,257 @@ const customerOrder = () => {
 
 
           {showModal ? (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
-            <form className="w-1/2 p-4 bg-white rounded-md" onSubmit={handleOrderSubmit}>
-                <div className="mb-4">
-                  <label className="block mb-2">Description</label>
-                  <input
-                    className="w-full p-2 border rounded-md"
-                    type="text"
-                    placeholder="Enter order description"
-                    name="description"
-                  />
-                </div>
-                <div className="block mb-2">
-                  <label className="block mb-1 font-semibold text-gray-600">Location</label>
-                  <input
-                    className="w-full p-2 border rounded-md"
-                    type="text"
-                    placeholder="Enter order location"
-                    name="location"
-                  />
-                </div>
-                <div className="block mb-2">
-                  <label className="block mb-1 font-semibold text-gray-600">Technician Type</label>
-                  <input
-                    className="w-full p-2 border rounded-md"
-                    type="text"
-                    placeholder="Enter technician type"
-                    name="TechnicianType"
-                  />
-                </div>
-                <div className="block mb-2">
-                  <label className="block mb-1 font-semibold text-gray-600">Image</label>
-                  <input
-                    className="w-full p-2 border rounded-md"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    name="image"
-                  />
-                </div>
-                <div className="block mb-2">
-                  <label className="block mb-1 font-semibold text-gray-600">Address</label>
-                  <input
-                    className="w-full p-2 border rounded-md"
-                    type="text"
-                    placeholder="Enter address"
-                    name="address"
-                  />
-                </div>
 
-                <button
-                  type="submit"
-                  className="px-4 py-2 text-white bg-blue-500 rounded-md"
-                // onClick={() => handleUpdateClick()} // Pass the order.id here
-                >
-                  Update
-                </button>
-                <button
-                  className="px-4 py-2 text-white bg-red-500 rounded-md"
-                  onClick={() => setShowModal(false)}
-                >
-                  Close
-                </button>
-              </form>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+              <div style={{ width: '50%' }}>
+                <div className={styles1.background}>
+                  <section className={styles1.loginSection}>
+                    <div className={styles1['form-box']}>
+                      <div className={styles1['form-value']}>
+                        <form onSubmit={handleOrderSubmit}>
+                          <h2 className={styles1.h2}>User Order Form</h2>
+                          <div className={styles1['inputbox']}>
+                            <ion-icon name="person-outline"></ion-icon>
+                            <input
+                              className={`${styles1.input} w-full p-2 border rounded-md`}
+                              type="text"
+
+                              name="description"
+                              required
+                            />
+                            <label className={styles1.label}>Description</label>
+                          </div>
+                          <div className={styles1['inputbox']}>
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <input
+                              className={`${styles1.input} w-full p-2 border rounded-md`}
+                              type="text"
+
+                              name="location"
+                              required
+                            />
+                            <label className={styles1.label}>Location</label>
+                          </div>
+
+                          <div className={styles1['inputbox']}>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <select
+                              className={`${styles1.input} w-full p-2 border rounded-md `}
+                              name="TechnicianType"
+                              required
+                              style={{
+                                background: 'rgba(139, 69, 19, 0.05)',
+                                color: 'black',
+                                border: '1px solid white', // Change the border color to white
+                              }}
+                            >
+                              <option value="" disabled selected>
+                                Select Technician Type
+                              </option>
+                              {professions.map((profession, index) => (
+                                <option key={index} value={profession} style={{ color: 'white' }}>
+                                  {profession}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+
+                          <div className={styles1['inputbox']}>
+                            <ion-icon name="image-outline"></ion-icon>
+                            <input
+                              className={`${styles1.input} w-full p-2 border rounded-md`}
+                              type="file"
+                              accept="image/*"
+                              onChange={handleImageChange}
+                              name="image"
+                              required
+                            />
+                            <label className={styles1.label} style={{ position: 'absolute', top: 0, left: '10px' }}>Image</label>
+                          </div>
+                          <div className={styles1['inputbox']}>
+                            <ion-icon name="location-outline"></ion-icon>
+                            <input
+                              className={`${styles1.input} w-full p-2 border rounded-md`}
+                              type="text"
+
+                              name="address"
+                              required
+                            />
+                            <label className={styles1.label}>Address</label>
+                          </div>
+                          <button
+                            type="submit"
+                            className={`${styles1.button} w-full p-2 text-gray bg-green-500 rounded-md hover:bg-gray-600 focus:outline-none`}
+                          >
+                            Update
+                          </button>
+                          <button
+                            className={`${styles1.button} w-full p-2 text-gray bg-green-500 rounded-md hover:bg-gray-600 focus:outline-none`}
+
+                            onClick={() => setShowModal(false)}
+                          >
+                            Close
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
             </div>
-          ) : null}
+
+
+          ) : <>
+
+
+
+            <div className={`flex flex-wrap justify-center items-center p-10`}>
+              {data1.map(order => (
+                order.state_is_ongoing && (
+                  <div key={order.id} className={` ${styles.flipcardcontainer}`}>
+                    <div className={` ${styles.flipcard}`}>
+                      <div className={` ${styles.cardfront}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+                        <div  >
+                          <img
+                            src={imageurl + order.image}
+                            alt={order.description}
+                            className={`${styles.fixedimagesize}`}
+
+                          />
+                        </div>
+                        <h3 className="text-lg font-semibold">{order.description}</h3>
+
+
+
+
+                        <p>Technician Type: {order.technician_type}</p>
+                        <p>Address: {order.address}</p>
+                        <p>Creation Timestamp: {order.created_at}</p>
+                        {order.eta_arrival_time && (
+                          <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
+                        )}
+                      </div>
+                      <div className={` ${styles.cardback}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <div>
+                          <p style={{ padding: '' }}>Go to Technician profile : {""}
+                          <span
+                            onClick={tecnicianViewHandler}
+                            TechnicianName={order.technician_name.username}
+                            className="text-orange-500 underline cursor-pointer"
+                          >
+                            {order.technician_name.username}
+                          </span>
+
+                          </p>
+                          
+
+
+                          <div className={` ${styles.messagebox}`} style={{ height: "150px", overflowY: "scroll", backgroundColor: 'rgba(174, 125, 91, 0.8)', borderRadius: '5px' }}>
+                            {order.comments &&
+                              order.comments.map((comment) => (
+                                <div key={comment.id} >
+                                  <h3 className="p-2 text-lg">{`${comment.sender}: ${comment.body}`}</h3>
+                                  {/* Render other comment properties as needed */}
+                                </div>
+                              ))}
+                          </div>
+
+                          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                            <form onSubmit={event => handleSubmit(event, order.id)} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                              <input
+                                type="text"
+                                placeholder="Add your message"
+                                className="w-full p-2 border rounded-md"
+                                name="message"
+                                style={{ flex: 1 }} // Make the input grow to fill available space
+                              />
+                              <button className="px-4 py-2 text-white rounded-md" type="submit">
+                                <FontAwesomeIcon icon={faPaperPlane} className="text-2xl cursor-pointer hover:text-yellow-600" />
+                              </button>
+                            </form>
+                          </div>
+
+
+
+                        </div>
+                        <div className="flex justify-between mt-4">
+                          <button onClick={() => handleDeleteOrder(order.id)} className="px-4 py-2 text-white bg-orange-500 rounded-md">Delete</button>
+                          <button onClick={() => handleRateOrder(order.id)} className="px-4 py-2 text-orange-500 bg-white rounded-md">Done</button>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                )
+              ))}
+            </div>
+
+
+
+
+            <div className={`flex flex-wrap justify-center items-center`}>
+              {data1.map(order => (
+                !order.state_is_ongoing && (
+                  <div key={order.id} className={` ${styles.flipcardcontainer}`}>
+                    {/* Flip card */}
+                    <div className={` ${styles.flipcard}`}>
+
+                      <div className={` ${styles.cardfront}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+                        <div  >
+                          <img
+                            src={imageurl + order.image}
+                            alt={order.description}
+                            className={`${styles.fixedimagesize}`}
+
+                          />
+                        </div>                      <h3 className="text-lg font-semibold">{order.description}</h3>
+                        <p>Technician Type: {order.technician_type}</p>
+                        <p>Address: {order.address}</p>
+                        <p>Creation Timestamp: {order.created_at}</p>
+                        {order.eta_arrival_time && (
+                          <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
+                        )}
+                      </div>
+
+                      <div className={` ${styles.cardback}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        {/* Update button */}
+                        <div className="flex justify-between mt-4">
+                          <button
+                            onClick={() => handleDeleteOrder(order.id)}
+                            className="px-4 py-2 text-orange-500 bg-white rounded-md"
+                          >
+                            Delete
+                          </button>
+                          <div>
+                            <button
+                              type="button"
+                              className="px-4 py-2 text-white bg-orange-500 rounded-md"
+                              style={{ zIndex: '1' }}
+                              onClick={() => handleUpdateClick1(order.id)}
+                            >
+                              Update
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Update module */}
+                    <div
+                      className={`update-module-container`}
+                      style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', zIndex: '2', display: 'none' }}
+                    >
+                      {/* Add your update module content here */}
+                    </div>
+                  </div>
+                )
+              ))}
+            </div>
+          </>}
           {showModalrate ? (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
               <div className="p-8 bg-white rounded-lg shadow-lg">
@@ -285,127 +475,12 @@ const customerOrder = () => {
 
 
 
-          <div className={`flex flex-wrap justify-center items-center`}>
-            {data1.map(order => (
-              order.state_is_ongoing && (
-                <div key={order.id} className={` ${styles.flipcardcontainer}`}>
-                  <div className={` ${styles.flipcard}`}>
-                    <div className={` ${styles.cardfront}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-                      <img src={imageurl + order.image} alt={order.description} className="w-full mb-2" />
-                      <h3 className="text-lg font-semibold">{order.description}</h3>
-                      <p>Technician Name: {order.technician_name.username}</p>
-                      <p>
-                        Go to Technician Profile:{" "}
-                      </p>
-                      <span
-                        onClick={tecnicianViewHandler}
-                        TechnicianName={order.technician_name.username} >
-                        {order.technician_name.username}
-                      </span>
-                      <p>Technician Type: {order.technician_type}</p>
-                      <p>Address: {order.address}</p>
-                      <p>Creation Timestamp: {order.created_at}</p>
-                      {order.eta_arrival_time && (
-                        <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
-                      )}
-                    </div>
-                    <div className={` ${styles.cardback}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-                      <div>
-                        {order.comments &&
-                          order.comments.map((comment) => (
-                            <div key={comment.id}>
-                              <h3 className="text-lg font-semibold">{`${comment.sender}: ${comment.body}`}</h3>
-                              {/* Render other comment properties as needed */}
-                            </div>
-                          ))}
-                      </div>
-                      <form onSubmit={event => handleSubmit(event, order.id)}>
-                        <input
-                          type="text"
-                          placeholder="Add your message"
-                          className="w-full p-2 mt-2 border rounded-md"
-                          name="message"
-                        />
-                        <button className="px-4 py-2 mt-2 text-white bg-blue-500 rounded-md" type="submit">
-                          Send
-                        </button>
-                      </form>
-                      <div className="flex justify-between mt-4">
-                        <button onClick={() => handleDeleteOrder(order.id)} className="px-4 py-2 text-white bg-red-500 rounded-md">Delete</button>
-                        <button onClick={() => handleRateOrder(order.id)} className="px-4 py-2 text-white bg-green-500 rounded-md">Done</button>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              )
-            ))}
-          </div>
-
-
-
-
-          <div className={`flex flex-wrap justify-center items-center`}>
-            {data1.map(order => (
-              !order.state_is_ongoing && (
-                <div key={order.id} className={` ${styles.flipcardcontainer}`}>
-                  {/* Flip card */}
-                  <div className={` ${styles.flipcard}`}>
-
-                    <div className={` ${styles.cardfront}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-                      <img src={imageurl + order.image} alt={order.description} className="w-full mb-2" />
-                      <h3 className="text-lg font-semibold">{order.description}</h3>
-                      <p>Technician Type: {order.technician_type}</p>
-                      <p>Address: {order.address}</p>
-                      <p>Creation Timestamp: {order.created_at}</p>
-                      {order.eta_arrival_time && (
-                        <p>Estimated Arrival Time: {order.eta_arrival_time}</p>
-                      )}
-                    </div>
-
-                    <div className={` ${styles.cardback}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      {/* Update button */}
-                      <div className="flex justify-between mt-4">
-                        <button
-                          onClick={() => handleDeleteOrder(order.id)}
-                          className="px-4 py-2 text-white bg-red-500 rounded-md"
-                        >
-                          Delete
-                        </button>
-                        <div>
-                          <button
-                            type="button"
-                            className="px-4 py-2 text-white bg-blue-500 rounded-md"
-                            style={{ zIndex: '1' }}
-                            onClick={() => handleUpdateClick1(order.id)}
-                          >
-                            Update
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Update module */}
-                  <div
-                    className={`update-module-container`}
-                    style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', zIndex: '2', display: 'none' }}
-                  >
-                    {/* Add your update module content here */}
-                  </div>
-                </div>
-              )
-            ))}
-          </div>
 
 
 
         </div>
-
+        <Footer></Footer>
       </div>
     )
   };

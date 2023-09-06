@@ -110,7 +110,8 @@ const acceptedorder = () => {
                    <div>
                 <button onClick={() => handleCancel(order.id)} className="px-4 py-2 text-white bg-red-500 rounded-md"><FontAwesomeIcon icon={faCancel} className="text-2xl cursor-pointer hover:text-yellow-600" /></button>
               </div>
-                   <div   >
+              
+                   <div>
                     <p style={{padding:''}}>Go to customer profile : {""}</p>
                     <span
                       onClick={customerviewhandelr}

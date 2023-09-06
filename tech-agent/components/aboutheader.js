@@ -6,7 +6,7 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Header = () => {
   const [nav, setNav] = useState(false);
-  const [color, setColor] = useState('#323B4C');
+  const [color, setColor] = useState('rgba(174, 125, 91, 0.8)');
   const [textColor, setTextColor] = useState('black'); // Set text color to black
 
   const { user, logout } = useAuth();
@@ -20,10 +20,10 @@ const Header = () => {
   useEffect(() => {
     const changeColor = () => {
       if (window.scrollY >= 90) {
-        setColor('#323B4C');
+        setColor('rgba(174, 125, 91, 0.8)');
         setTextColor('orange'); // Set text color to black
       } else {
-        setColor('#323B4C');
+        setColor('rgba(174, 125, 91, 0.8)');
         setTextColor('orange');
       }
     };
