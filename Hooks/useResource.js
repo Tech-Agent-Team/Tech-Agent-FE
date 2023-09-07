@@ -27,6 +27,7 @@ export default function useResource(urll) {
       const options = config();
       options.method = 'PUT';
       const response = await fetch(urlpost, options);
+      mutate()
   
       if (!response.ok) {
         const responseBody = await response.text();
@@ -147,7 +148,7 @@ export default function useResource(urll) {
           options.body = JSON.stringify(newTechnician);
           const response = await fetch(urlpost, options);
           console.log(response.status)
-      
+      mutate()
           if (!response.ok) {
             const responseBody = await response.text();
             console.error('Failed to register technician. Server response:', responseBody);
@@ -168,11 +169,13 @@ export default function useResource(urll) {
           options.method = 'POST';
           options.body = JSON.stringify(newTechnician);
           const response = await fetch(urlpost, options);
-      
+      mutate()
           if (!response.ok) {
             const responseBody = await response.text();
             console.error('Failed to register technician. Server response:', responseBody);
             throw new Error('Failed to register technician');
+          }else {
+            alert("Email or username already exists.");
           }
       
           // You can handle success here if needed
@@ -189,7 +192,7 @@ export default function useResource(urll) {
           options.method = 'POST';
           options.body = JSON.stringify(arrivalTime);
           const response = await fetch(urlpost, options);
-      
+      mutate()
           if (!response.ok) {
             const responseBody = await response.text();
             console.error('Failed to register technician. Server response:', responseBody);
@@ -209,7 +212,7 @@ export default function useResource(urll) {
           options.method = 'POST';
           options.body = JSON.stringify(arrivalTime);
           const response = await fetch(urlpost, options);
-      
+      mutate()
           if (!response.ok) {
             const responseBody = await response.text();
             console.error('Failed to register technician. Server response:', responseBody);
@@ -230,7 +233,7 @@ export default function useResource(urll) {
           options.method = 'POST';
           options.body = JSON.stringify(message);
           const response = await fetch(urlpost, options);
-      
+      mutate()
           if (!response.ok) {
             const responseBody = await response.text();
             console.error('Failed to register technician. Server response:', responseBody);

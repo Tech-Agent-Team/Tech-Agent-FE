@@ -3,9 +3,11 @@ import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth';
 // import 'ionicons/dist/css/ionicons.min.css';
+import { useRouter } from 'next/router';
 
 const LoginForm = () => {
   const { login } = useAuth();
+  const router = useRouter();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -13,7 +15,7 @@ const LoginForm = () => {
     const password = event.target.password.value;
     try {
       await login(username, password);
-      router.push('/LoginPage');
+      router.push('/');
     } catch (error) {
       console.error('Incorrect email or password');
     }

@@ -189,7 +189,7 @@ const acceptedorder = () => {
                             type="text"
                             placeholder="start to chat ..."
                             name="message"
-                            required
+                            // required
                             className={`${styles.input} flex-grow`}
                           />
                           <div className="ml-2">

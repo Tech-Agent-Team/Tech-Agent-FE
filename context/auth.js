@@ -33,7 +33,13 @@ export function AuthProvider(props) {
             headers: { "Content-Type": "application/json" }
         };
         const res = await fetch(url, option);
+
         const data = await res.json();
+        if (res.ok) {
+            ""
+          } else {
+            alert("Incorrect email or password. Please try again.");
+        }
         const decodedToken = jwt.decode(data.access);
         console.log(decodedToken);
         Cookies.set("token", data.access, {

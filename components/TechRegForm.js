@@ -11,6 +11,7 @@ export default function TechRegForm() {
   const [isProfessionsDropdownOpen, setIsProfessionsDropdownOpen] =
     useState(false);
   const urlenv = process.env.NEXT_PUBLIC_URL;
+  const router = useRouter();
 
   // const professions = [
   //   "Electrician",
@@ -58,9 +59,9 @@ export default function TechRegForm() {
       });
 
       if (response.ok) {
-""
-  } else {
-        // Handle errors
+        router.push('/LoginPage');
+      } else {
+        alert("Email or username already exists.");
       }
     } catch (error) {
       console.error("Error:", error);
